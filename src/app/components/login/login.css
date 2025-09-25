@@ -1,0 +1,32 @@
+.login{
+    border: 1px solid red;
+    width: 100%;
+    
+}
+
+.login-container{
+    border: 2px solid blue;
+    width: 80%;
+    height: 80%;
+   position: absolute;
+   top: 50%;
+   left:50%;
+   transform: translate(-50%, -50%);
+   display: flex;
+   /* justify-content: space-evenly; */
+}
+.login-image-container{
+    border:1px solid purple;
+    width: 50%;
+    
+}
+.image-rectangle{
+    border: 1px solid red;
+    width: 80%;   /* da valutare dopo se manterlo cosi o ingrandirlo*/
+    height: 80%;
+    /* background-image: url('assets/images/marcoaurelio.jpg'); */
+}
+.login-form-container{
+    border: 1px solid orange;
+    width: 50%;
+}
