@@ -55,14 +55,14 @@
 }
 
 .logo-container{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 200px;
     margin-top: 20px;
     margin-left: 20px;
 }
 .formGroup-container{
     /* border: 2px solid blue; */
-    width: 50%;
+    width: 40%;
     height: fit-content;
     position: absolute;
     top: 50%;
@@ -71,16 +71,20 @@
     
 }
 .form-title{
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: fit-content;
     margin: auto;
+    font-size: 30px;
+    font-family: "Inknut Antiqua", serif;
+  font-weight: 500;
+  font-style: normal;
 }
 .form{
     /* border: 1px solid brown; */
-   margin-top: 10px;
+   margin-top: 20px;
 }
 .form button, .form label {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .form p {
