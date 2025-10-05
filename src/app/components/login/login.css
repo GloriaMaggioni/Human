@@ -2,10 +2,10 @@
 
 
 
-.login{
+.login-page{
     /* border: 1px solid red; */
      width: 100%;
-     background-color: black;
+    
     
 }
 
@@ -38,14 +38,14 @@
 }
 .login-image-text{
     /* border: 1px solid orange; */
-    width:85%;
+    width:90%;
     z-index: 3;
     position: absolute;
     bottom:5%;
     left:5%;
     color:white;
-    font-size:25px;
-    font-family: "Alice", serif;
+    font-size:28px;
+    font-family: "Arvo", serif;
     font-weight: 400;
     font-style: italic;
 }
@@ -63,7 +63,7 @@
 }
 .formGroup-container{
     /* border: 1px solid blue; */
-    width: 65%;
+    width: 55%;
     height: fit-content;
     position: absolute;
     top: 50%;
@@ -80,38 +80,39 @@
     font-weight: 500;
     font-style: normal;
 }
-.form{
+.login-form{
     /* border: 1px solid brown; */
     height: 80%;
    margin-top: 25px;
 }
-.form label {
+.login-form label {
     margin-top: 30px;
     font-size: 15px
 }
 
-.form p {
+.login-form p {
     /* border:1px solid green; */
    text-align: center;
    margin-top: 15px;
 }
-.form input{
+.login-form input{
     margin-top: 5px;
     padding-left: 10px;
 }
-.form .login-btn {
+.login-form .login-btn {
      margin-top: 30px;
     font-size: 15px
 
 }
 
-.form .register-btn {
+.login-form .register-btn {
     margin-top: 20px;
     font-size: 15px;
 
 }
 
-.form .login-btn:hover, 
-.form .register-btn:hover {
+.login-form .login-btn:hover, 
+.login-form .register-btn:hover {
     cursor:pointer
 }
+
