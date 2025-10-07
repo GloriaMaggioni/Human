@@ -9,7 +9,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
   styleUrl: './register.css'
 })
 export class Register {
-  //  private route = Inject(ActivatedRoute);
+    private route = Inject(ActivatedRoute);
   form  = new FormGroup({
     firstName : new FormControl('', [Validators.required]),
     lastName: new FormControl('', Validators.required),
@@ -19,16 +19,14 @@ export class Register {
   })
  private router = Inject (Router);
 
-  goToLoginPage(){
-    this.router.navigate[('/login/login.html')]
-  }
+ 
   goToDashboard(){    //NON FUNZIONA: CAPIRE CHE COSA È SBAGLIATO
     if(this.form.valid){
           this.router.navigate[('/dashboard/dashboard.html')]
           console.log(this.form.value)
 
-    }else{
-      alert('Compilare tutti i campi obbligatori')
+    }else if(this.form.invalid){                   //APPARE ANCHE SE GLI INPUT SONO COMPILATI TUTTI E CORRETTAMENTE
+      alert('Compilare tutti i campi obbligatori') 
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { ActivatedRoute, RouterLink, RouterModule, Routes } from "@angular/router";
+import { ActivatedRoute, RouterLink, RouterModule, Routes,  } from "@angular/router";
 import{FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms"
 @Component({
   selector: 'app-login',
@@ -16,11 +16,11 @@ import{FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fro
 export class Login {
    
 
-  //constructor(private route: Router){}
+  // constructor(private route: Router){}
 
 
   goToRegisterPage(){
-   // this.route.navigate[('/register/register.html')] //mi da errore: vedereperchè qui non funziona .Sistemare la autenticazione dei campi
+    // this.route.navigate[('/register/register.html')] //mi da errore: vedere perchè qui non funziona .Sistemare la autenticazione dei campi
   }
  
 

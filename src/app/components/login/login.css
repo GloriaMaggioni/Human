@@ -1,4 +1,5 @@
 
+ /* MODIFICARE LE GRANDEZZE A SECONDA DELLE DIMENSIONI DELLO SCHERMO  */
 
 
 
@@ -39,11 +40,8 @@
 .login-image-text{
     /* border: 1px solid orange; */
     width:90%;
-    z-index: 3;
-    position: absolute;
     bottom:5%;
     left:5%;
-    color:white;
     font-size:28px;
     font-family: "Arvo", serif;
     font-weight: 400;
@@ -58,8 +56,11 @@
 .logo-container{
      /* border: 1px solid red;  */
     width: 30%;
-    margin-top: 10px;
-    /* margin-left: 5px; */
+    height:fit-content;
+    z-index: 5;
+    position:absolute;
+    right:80%
+   
 }
 .formGroup-container{
     /* border: 1px solid blue; */
