@@ -27,12 +27,12 @@
     justify-content:flex-end;
 }
 .register-formGroup{
-    border: 1px solid black;
-    width: 80%;
+    /* border: 1px solid black; */
+    width: 55%;
     position:absolute;
     top:50%;
     left:50%;
-    transform:translate(-50%, -50%)
+    transform:translate(-50%, -50%);
 
 }
 .logo-container{
@@ -40,12 +40,46 @@
     margin-top: 10px;
 }
 .form-title{
-    border: 1px solid orange;
-    width:fit-content;
+    width: fit-content;
+    margin: auto;
+    font-size: 40px;
+    font-family: "Inknut Antiqua", serif;
+    font-weight: 500;
+    font-style: normal;
 }
 .register-form{
     
    margin-top: 25px;
+}
+.fullName-container{
+    /* border: 1px solid magenta; */
+    width: 100%;
+   
+}
+.register-form label {
+    margin-top: 30px;
+    font-size: 15px
+}
+
+.register-form p {
+    /* border:1px solid green; */
+   text-align: center;
+   margin-top: 15px;
+}
+.register-form input{
+    margin-top: 5px;
+    padding-left: 10px;
+}
+.register-form .register-btn {
+     margin-top: 30px;
+    font-size: 15px
+
+}
+
+.register-form .login-btn {
+    margin-top: 20px;
+    font-size: 15px;
+
 }
 
 .register-image-container{
@@ -54,4 +88,9 @@
 .image-rectangle{
     border:1px solid purple;
     /* height:100%  */
+}
+
+.register-form .register-btn:hover,
+.register-form .login-btn:hover{
+  cursor:pointer;
 }

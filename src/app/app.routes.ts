@@ -7,6 +7,6 @@ export const routes: Routes = [
     {path: 'dashboard', component: Dashboard},
     {path: 'login', component: Login},
     {path: 'register', component: Register},
-    {path: '', redirectTo: 'login', pathMatch: 'full'},   //da cambiare in 'homepage' e in modo che si vede il login se non si è fatto l'accesso
+    {path: '', redirectTo: 'dashboard', pathMatch: 'full'},   //da cambiare in 'homepage' e in modo che si vede il login se non si è fatto l'accesso
     
 ];

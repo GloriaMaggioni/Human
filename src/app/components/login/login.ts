@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterModule, Routes } from "@angular/router";
+import { Component, Inject } from '@angular/core';
+import { ActivatedRoute, RouterLink, RouterModule, Routes } from "@angular/router";
 import{FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms"
 @Component({
   selector: 'app-login',
@@ -8,14 +8,20 @@ import{FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fro
     FormsModule,
     RouterModule,
     
+    
   ],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
 export class Login {
- 
+   
 
-  constructor(){}
+  //constructor(private route: Router){}
+
+
+  goToRegisterPage(){
+   // this.route.navigate[('/register/register.html')] //mi da errore: vedereperchè qui non funziona .Sistemare la autenticazione dei campi
+  }
  
 
 }
