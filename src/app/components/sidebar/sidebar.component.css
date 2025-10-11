@@ -1,6 +1,32 @@
 .sidebar{
-    border:1px solid orange;
-    width:50vw;
+    /* border:1px solid orange; */
+    width:13vw;
     height:100vh;
     background-color:rgba(233, 227, 218, 1);
+}
+.logo-container{
+    border:1px solid red;
+    width:fit-content;
+    margin-top:20px;
+    
+}
+.logo-container img {
+    width:80%;
+    margin: auto;
+}
+
+.menu-icon {
+    border:1px solid blue;
+    width: 15%;
+    /* height:15%; */
+    margin-left: 80%;
+    margin-top: 30px;
+}
+.menu-icon img {
+    width: 100%;
+    /* color: #000000; */
+}
+
+.menu-icon:hover{
+    cursor:pointer;
 }
