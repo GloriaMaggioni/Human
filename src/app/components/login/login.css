@@ -1,17 +1,11 @@
 
  /* MODIFICARE LE GRANDEZZE A SECONDA DELLE DIMENSIONI DELLO SCHERMO  */
 
-
-
 .login-page{
-    /* border: 1px solid red; */
-     width: 100%;
-    
-    
+     width: 100%; 
 }
 
 .login-container{
-    /* border: 1px solid blue; */
     width: 80%;
     height: 80%;
    position: absolute;
@@ -21,24 +15,19 @@
    display: flex;
 }
 .login-image-container{
-    /* border:2px solid purple; */
     width: 50%;
 
 }
 .login-image-container .image-rectangle {
-    /* border: 1px solid red; */
-    width: fit-content;
-    height:100%;
-    /* margin:auto; */
-   margin-left: 10%;
-   position: relative;
+    height:100%; 
+    position: relative;
+    margin-left: 15% 
 }
 
 .login-image-container .image-rectangle img{
     height: 100%;
 }
 .login-image-text{
-    /* border: 1px solid orange; */
     width:90%;
     bottom:5%;
     left:5%;
@@ -48,22 +37,19 @@
     font-style: italic;
 }
 .login-form-container{
-    /* border:1px solid orange; */
     width: 50%;
     position: relative;
 }
 
 .logo-container{
-     /* border: 1px solid red;  */
     width: 30%;
     height:fit-content;
     z-index: 5;
     position:absolute;
-    right:80%
+    right:85%
    
 }
 .formGroup-container{
-    /* border: 1px solid blue; */
     width: 55%;
     height: fit-content;
     position: absolute;
@@ -73,7 +59,6 @@
     
 }
 .form-title{
-    /* border: 1px solid green; */
     width: fit-content;
     margin: auto;
     font-size: 40px;
@@ -82,7 +67,6 @@
     font-style: normal;
 }
 .login-form{
-    /* border: 1px solid brown; */
     height: 80%;
    margin-top: 25px;
 }
@@ -92,7 +76,6 @@
 }
 
 .login-form p {
-    /* border:1px solid green; */
    text-align: center;
    margin-top: 15px;
 }
