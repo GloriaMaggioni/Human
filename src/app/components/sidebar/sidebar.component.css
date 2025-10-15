@@ -56,8 +56,7 @@
     font-size:16px;
     text-align:center;
     border-radius: 5px;
-    /* background-color: #d9d9d9; */
-    
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
 .sections-container img{
     /* border:1px solid red; */
@@ -74,8 +73,8 @@
 }
 .sections-container li:hover,
 .sections-container li img:hover{
-     /* background-color: #e66a0c; */
-    /* color:white; */
+     background-color: #e66a0c;
+     color:#ffffff;
 
 }
 .setting-log-container{
