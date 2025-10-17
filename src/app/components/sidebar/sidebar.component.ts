@@ -7,16 +7,18 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [MatSidenavModule, MatButtonModule,NgIf ],
+  imports: [MatSidenavModule, MatButtonModule,
+    // NgIf 
+  ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
- isCollapsed = false; //all'inizio non è chiusa
+//  isCollapsed = false; //all'inizio non è chiusa
 
- chiudi(){
-  this.isCollapsed = !this.isCollapsed;
- }
+//  chiudi(){
+//   this.isCollapsed = !this.isCollapsed;
+//  }
   
   
   
