@@ -8,7 +8,5 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './events-page.css'
 })
 export class EventsPage {
-showFiller = false;
 
-mostra = false;
 }

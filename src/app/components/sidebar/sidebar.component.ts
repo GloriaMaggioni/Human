@@ -1,26 +1,33 @@
-import { Component} from '@angular/core';
+import { Component, ElementRef, signal, ViewChild} from '@angular/core';
 import { RouterLink } from "@angular/router";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
-import { NgIf } from '@angular/common';
-
+import { NgIf, NgClass, NgComponentOutlet,} from '@angular/common';
+import {MatListModule} from '@angular/material/list';
+import { FormsModule } from "@angular/forms";
+import {MatIconModule} from '@angular/material/icon';
+import { Url } from 'url';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [MatSidenavModule, MatButtonModule,
-    // NgIf 
-  ],
+  imports: [MatSidenavModule, MatButtonModule, MatListModule, FormsModule, MatIconModule, RouterLink],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-//  isCollapsed = false; //all'inizio non è chiusa
-
-//  chiudi(){
-//   this.isCollapsed = !this.isCollapsed;
-//  }
+//   @ViewChild('sidebar')  sidebar!: ElementRef;
+ isCollapsed = false;
+dashboard: string|readonly any[]|null|undefined;
+events: string|readonly any[]|null|undefined;
+// closedSideBar(){
+//   if( this.isCollapsed == true){
+//     this.sidebar.nativeElement.style.width = '200px'
+//   }
+// }
   
-  
+  toggle(){
+    this.isCollapsed = !this.isCollapsed;
+  }
   
  
 }
