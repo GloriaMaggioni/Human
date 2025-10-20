@@ -12,6 +12,8 @@ import { ProductivityAndHealthPageComponent } from './components/productivity-an
 import { UtentsPageComponent } from './components/utents-page/utents-page.component';
 import { SettingsPageComponent } from './components/settings-page/settings-page.component';
 
+
+
 export const routes: Routes = [    
     {path: '', component: Dashboard ,children: [
         {path: '', component: HomepageComponent},
@@ -27,7 +29,6 @@ export const routes: Routes = [
     {path: 'login', component: Login},
     {path: 'register', component: Register},
 
-    // {path: '', redirectTo: 'dashboard', pathMatch: 'full'}, 
     { path: '**', redirectTo: '' ,pathMatch: 'full'}
 
 

@@ -4,16 +4,19 @@
 
 
 
- <div #sidebar class="sidebar-container border-amber-500 border-1 border-solid rounded-r-xl overflow-hidden" [class.closed]="!isOpen()">
-         <button class="menu-icon"><img src="/assets/images/menu-icon2.svg" alt="" (click)="toggle()" ></button>  
+ <div class="sidebar-container  rounded-r-xl overflow-hidden" [class.closed]="!isOpen()" >
+         <button class="menu-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" (click)="toggle()">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+             </svg>
+        </button>  
        <div  class="sidebar-content  rounded-r-xl "  >
-         <div class="logo-container size-14 grow-3">
-        <img src="/assets/images/logo-blackGold.png" alt="">
-    </div>
+         <div class="logo-container "  >
+             <!-- <img  src="/assets/images/logo-blackGold.png" alt=""> -->
+         </div> 
     <!-- SISTEMARE LE DIMENSIONI TESTI PER LE DIVERSE DIMENSIONI DEGLI SCHERMI -->
-    <div class="sections-container  ">
+     <div class="sections-container  ">
         <ul class="md:shrink "> 
-          <!-- SISTEMARE I LINK PER CAMBIARE IL MAIN COMTENT IN BASE AL TASTO PREMUTO -->
             <li class=" ">
                 <a routerLink=" " routerLinkActive="active" > 
                 <img   src="/assets/images/home-icon2.svg"  alt="" >
@@ -52,12 +55,11 @@
             </li>
             <li class=" ">
                 <a routerLink="utents" routerLinkActive="active" >
-                <img   src="/assets/images/utents-icon2.svg"  alt="" >
-                <span >Utents</span>
+                   <img   src="/assets/images/utents-icon2.svg"  alt="" >
+                   <span >Utents</span>
                 </a> 
             </li>
-        </ul>
-        
+        </ul>   
     </div>
     <div class="setting-log-container ">
          <div class="settingsBtn-container">
