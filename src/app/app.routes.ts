@@ -20,8 +20,8 @@ export const routes: Routes = [
         {path: 'events', component: EventsPage},
         {path: 'history', component: HistoryPageComponent},
         {path: 'future', component: FuturePageComponent},
-        {path: 'places and spaces', component: PlacesAndSpacesPageComponent},
-        {path: 'productivity and health', component: ProductivityAndHealthPageComponent},
+        {path: 'placesandspaces', component: PlacesAndSpacesPageComponent},
+        {path: 'productivityandhealth', component: ProductivityAndHealthPageComponent},
         {path: 'utents', component: UtentsPageComponent},
         {path: 'settings', component: SettingsPageComponent}
     ]},
