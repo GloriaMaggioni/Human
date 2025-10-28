@@ -6,3 +6,6 @@
     border:1px solid green;
     display:inline-flex;
 }
+.search-input{
+    padding-left:5px
+}
