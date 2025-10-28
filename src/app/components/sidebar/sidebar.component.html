@@ -10,108 +10,45 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
              </svg>
         </button>  
-       <!-- <div  class="sidebar-content  rounded-r-xl "  >
-         <div class="logo-container "  >
-         </div> 
-     <div class="sections-container  ">
-        <ul class="md:shrink "> 
-            <li class=" ">
-                <a routerLink=" " routerLinkActive="active" > 
-                <img   src="/assets/images/home-icon2.svg"  alt="" >
-                <span>Home</span>
-                </a>
-            </li>
-            <li class=" ">
-                <a routerLink="events" routerLinkActive="active" >
-                <img   src="/assets/images/event-icon2.svg"  alt="" >
-                <span >Events</span>
-                </a> 
-            </li>
-            <li class=" ">
-                <a routerLink="history" routerLinkActive="active">
-                <img   src="/assets/images/history-icon2.svg"  alt="" >
-                <span >History</span>
-                </a> 
-            </li>
-            <li class=" ">
-                <a routerLink="future" routerLinkActive="active">
-                <img   src="/assets/images/future-icon2.svg"  alt="" >
-                <span >Future</span>
-                </a> 
-            </li>
-            <li class=" ">
-                <a outerLink="places and spaces" routerLinkActive="active" >
-                <img   src="/assets/images/p&s-icon2.svg"  alt="" >
-                <span >Places <br> & Spaces</span>
-                </a> 
-            </li>
-            <li class=" ">
-                <a routerLink="productivity and health" routerLinkActive="active" >
-                <img   src="/assets/images/p&h-icon2.svg"  alt="" >
-                <span >Productivity <br> & Health</span>
-                </a> 
-            </li>
-            <li class=" ">
-                <a routerLink="utents" routerLinkActive="active" >
-                   <img   src="/assets/images/utents-icon2.svg"  alt="" >
-                   <span >Utents</span>
-                </a> 
-            </li>
-        </ul>   
-    </div>
-    <div class="setting-log-container ">
-         <div class="settingsBtn-container">
-            <a routerLink="settings" routerLinkActive="active">
-                <img src="/assets/images/setting-icon2.svg" alt="">
-               <span>Settings</span>
-            </a>
-
-        </div>
-        <div class="log-btn-container italic text-red-600">
-            <a routerLink="login" routerLinkActive="active">
-                <img src="/assets/images/logout-icon2.svg" alt="">
-                <span>Logout</span>
-            </a>
-        </div>
-        
-    </div>
-    </div> -->
-
-        <div class="sidebar-content">
+     
+        <div class="sidebar-content rounded-r-xl">
             <div class="logo-container">
                 <img [src]="currentLogo" alt="logo" class="logo-img">
             </div>
-            <div class="sections-container" *ngFor=" let item of items">
-                <ul>
-                     <li>
-                        <a [routerLink]="item.link" routerLinkActive="active">
-                            <img [src]="item.icon" alt="" class="item-icon">
-                            <span *ngIf="isOpen()">{{item.label}}</span>
-                        </a>
-                     
-                    </li> 
-  
-                </ul>
-
+               <div class="sections-container">
+                    @for(item of items; track $index){
+                        <li class="md:shrink">
+                          <a [routerLink]="item.link" routerLinkActive="active">
+                             <img [src]="item.icon" alt="" class="item-icon">
+                             @if(isOpen()){
+                               <span >{{item.label}}</span>
+                               }
+                          </a> 
+                        </li> 
+                    }
             </div>
+            
             <div class="setting-log-container">
-               <div class="setting-container" *ngFor="let item of setting">
-                 
-                    <a [routerLink]="item.link">
-                        <img [src]="item.icon" alt="">
-                        <span *ngIf="isOpen()">{{item.label}}</span>
-
-                    </a>
-               </div>
-                <div class="logout-container" *ngFor="let item of logout">
-                 
-                    <a [routerLink]="item.link">
-                        <img [src]="item.icon" alt="">
-                        <span *ngIf="isOpen()">{{item.label}}</span>
-
-                    </a>
-               </div>
-
+                    <div class="setting-container" >
+                        @for(item of setting; track setting){
+                           <a [routerLink]="item.link" routerLinkActive="active">
+                              <img [src]="item.icon" alt="">
+                             @if(isOpen()){                        
+                              <span >{{item.label}}</span>
+                             }
+                          </a>
+                        }
+                    </div>
+                 <div class="logout-container">
+                     @for(item of logout; track logout){
+                         <a [routerLink]="item.link" routerLinkActive="active">
+                           <img [src]="item.icon" alt="">
+                         @if(isOpen()){                        
+                            <span class="text-red-600" >{{item.label}}</span>
+                         }
+                        </a>
+                    }
+                </div>
             </div>
          
         </div>

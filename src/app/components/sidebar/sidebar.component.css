@@ -1,22 +1,32 @@
  .sidebar-container{
-    width:8vw;
+    width:9vw;
     height:100%;
     background-color:rgba(233, 227, 218, 1);
     transition: width 0.3s ease-in-out;
+    &.collapsed{
+        width:3vw;
+        margin-left:5px;
+       .menu-icon{
+          margin-left:58%;
+          margin-top: 30px; 
+       } 
+       
+       
+    }
   
     
 }
+
 
 .sidebar-content{
     width:100%;
     height:90%;   
 } 
+
 .logo-container{
     /* border:1px solid blue; */
     width:90%;
-    height:30px;
-    /* margin-top:30px; */
-    /* background-image:url('/assets/images/logo-blackGold.png'); */
+    height:10%;
     background-size:contain;
     background-repeat:no-repeat;
     margin:20px auto;
@@ -24,7 +34,6 @@
 }
 .logo-container img {
     width:100%;
-   
 }
 
 .menu-icon {
@@ -32,55 +41,43 @@
     margin-left: 80%;
     margin-top: 30px; 
     
+    
 }
 .menu-icon img {
     width: 100%;
 }
 
 
-.sections-container {
-    border:1px solid black;
-    width:100%;
-    height:fit-content;
-    text-align: end;
-    /* margin-top: 5px; */
-    display: inline-flex;
-    flex-direction: column;
-    align-items: end;
-    justify-content: center;
-}
-.sections-container ul{
-    width:95%;
-    height:fit-content;
-}
+.sections-container{
+    border:1px solid blue;
+    width:90%;
+    margin: auto;
 
-
+}
 .sections-container li {
-    /* border:1px solid red; */
+    /* border:1px solid black; */
     width:100%;
-    margin-top:10%;
-    display:inline-flex;  
-    border-radius: 5px;
-    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    text-align:left;
+    list-style:none;
+    
 }
 .sections-container a {
-    /* border:1px solid yellow; */
+    border:1px solid red;
     width:100%;
-    height:100%;
     display:inline-flex;
-     align-items: center;
-    font-size:16px;
-    text-align:left;
-    margin-left:5px
+    align-items:center;
+    font-size: 16px;
+     border-radius: 5px;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
-.sections-container img{
-    width:25%;
-    margin-right:5px;
-
+.sections-container img {
+    /* margin-left:10px; */
 }
-
+.sections-container span {
+    width:fit-content;
+}
 .setting-log-container{
-    /* border:1px solid blue; */
+    border:1px solid blue;
      text-align:center;
     width:100%;
     margin-top:70%; 
@@ -88,45 +85,45 @@
    
 }
 .setting-log-container a{
-    /* border:1px solid white; */
+    border:1px solid white;
     display:inline-flex;
     align-items:center;
     justify-content:center;
     font-size:15px;
 }
 
-.settingsBtn-container{
-   /* border:1px solid red; */
+.setting-container{
+   border:1px solid red;
     width:100%;
     display:inline-flex;
      align-items:center;
     justify-content:center; 
     padding-top:2%;
 }
-.settingsBtn-container span{
+.setting-container span{
     width:fit-content;
     margin-left:2%;
 
 }
-.settingsBtn-container img,
-.log-btn-container img{
+.setting-container img,
+.logout-container img{
     width:25%
 }
 
-.log-btn-container{
+.logout-container{
     /* border:1px solid black; */
    margin-top:10%
 }
 
 .menu-icon:hover,
-.sections-container li:hover,
-.settingsBtn-container:hover,
-.log-btn-container:hover{
+.sections-container a:hover,
+.settings-container:hover,
+.logout-container:hover{
     cursor:pointer;
    
 }
-.sections-container li:hover,
-.sections-container li img:hover{
+.sections-container a:hover,
+.sections-container  img:hover{
      background-color: #e66a0c;
      color:#ffffff;
 }

@@ -1,8 +1,8 @@
 import { Component, ElementRef, signal, ViewChild} from '@angular/core';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { RouterLink, RouterLinkActive, RouterModule } from "@angular/router";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
-import { NgClass, NgComponentOutlet, NgSwitch, NgSwitchCase, NgForOf, NgIf, CommonModule } from '@angular/common';
+import { CommonModule, NgClass, NgComponentOutlet } from '@angular/common';
 import {MatListModule} from '@angular/material/list';
 import { FormsModule } from "@angular/forms";
 import {MatIconModule} from '@angular/material/icon';
@@ -10,7 +10,7 @@ import { Url } from 'url';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [MatSidenavModule, MatButtonModule, MatListModule, FormsModule, MatIconModule, RouterLink, RouterLinkActive, NgForOf, NgIf,CommonModule],
+  imports: [MatSidenavModule, MatButtonModule, MatListModule, FormsModule, MatIconModule,RouterModule, CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
@@ -49,17 +49,17 @@ smallLogo = 'assets/images/logoImg.png'
       label: 'Future'
     },
      {
-      link: 'placesandspaces ',
+      link: 'placesandspaces',
       icon: '/assets/images/p&s-icon2.svg',
       label: 'Places & Spaces'
     },
      {
-      link: 'productivityandhealth ',
+      link: 'productivityandhealth',
       icon: '/assets/images/p&h-icon2.svg',
       label: 'Productivity & Health'
     },
      {
-      link: 'utents ',
+      link: 'utents',
       icon: '/assets/images/utents-icon2.svg',
       label: 'Utents'
     },
@@ -69,14 +69,14 @@ smallLogo = 'assets/images/logoImg.png'
 
   setting = [ 
   {
-     link: 'settings ',
+     link: 'settings',
       icon: '/assets/images/setting-icon2.svg',
       label: 'Setting'
     }
   ];
   logout = [
     {
-      link: '/login ',
+      link: '/login',
       icon: '/assets/images/logout-icon2.svg',
       label: 'Logout'
     }
