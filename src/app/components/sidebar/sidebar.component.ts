@@ -6,7 +6,7 @@ import { CommonModule, NgClass, NgComponentOutlet } from '@angular/common';
 import {MatListModule} from '@angular/material/list';
 import { FormsModule } from "@angular/forms";
 import {MatIconModule} from '@angular/material/icon';
-import { Url } from 'url';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -15,6 +15,7 @@ import { Url } from 'url';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+
 
 dashboard: string|readonly any[]|null|undefined;
 events: string|readonly any[]|null|undefined;
@@ -85,9 +86,10 @@ smallLogo = 'assets/images/logoImg-2.svg';
   toggle(){
     this.isOpen.update(open => !open)
     this.currentLogo = this.isOpen() ? this.largeLogo : this.smallLogo;
-  
   }
-
-
-
+  
 }
+
+
+
+
