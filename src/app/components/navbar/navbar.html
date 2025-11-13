@@ -14,9 +14,25 @@
             <img class=" w-8 mr-0.5" src="assets/images/add-icon.svg" alt="">New
         </button>
         <mat-menu  #newBtnMenu="matMenu">
-                <button class="option1" mat-menu-item  >Post</button>
-                <button mat-menu-item>Utente</button>
+                <button class="option1" mat-menu-item  (click)="createPost()">Post</button>
+                <button mat-menu-item (click)="createNewUser()">Utente</button>
         </mat-menu>
+        @if(isOpen){
+           <div class="post-form" >
+           <button class="closedBtn" (click)="createPost()">Chiudi</button>
+           <p>QUI PUOI CREARE IL NUOVO POST</p>
+        </div>
+        }
+      
+        @if(isCreate()){
+           <div class="newUser-form" >
+             <button class="closedBtn" (click)="createNewUser()">Chiudi</button>
+             <p>QUI PUOI CREARE UN NUOVO UTENTE</p>
+
+        </div>
+
+        }
+       
         <!-- FAVORITE BUTTON -->
         <span class="favorite-icon">
             <img class="h-8" src="assets/images/favorite-icon.svg" alt="" >

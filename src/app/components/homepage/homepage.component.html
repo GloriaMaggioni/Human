@@ -19,18 +19,27 @@
      </div>
 
 
-     <div class="middle-content flex h-50">
-        <div class="userList-container w-[50%] h-full ">
-         <!-- farlo dinamico:importo i nomi dalla pagina 'users-page'(?) -->
+     <div class="middle-content flex ">
+        <div class="userList-container w-[60%] h-full ">
+         <!-- farlo dinamico:importo i nomi dalla pagina 'users-page'(?) 
+             Li importo dal componente utents-page 
+         -->
+             LISTA DEGLI UTENTI IMPORTATI DAL COMPONENTE 'utents-page'
         </div>
-        <div class="calendar-container w-[50%] h-full">
-            <!-- NON SI VEDE: APPENA MESSO è COLLASSATO TUTTO -->
+        <div class="calendar-container w-[40%] h-full">
+          
             <mat-card class="demo-inline-calendar-card">
-                 <mat-calendar [(selected)]="selected"></mat-calendar>
+                <!-- L'EVENTO FUNZIONA SU QUALSIASI TASTO(INCLUDERE SOLO I NUMERI) => inserire un controllo -->
+                 <mat-calendar [(selected)]="selected"  (click)="eventoForm()"></mat-calendar>
             </mat-card>
-            <p>Selected date: {{selected()}}</p>
+            <div class="calendar-eventForm" *ngIf="isOpen">
+                <button  (click)="eventoForm()" class=" closedBtn text-white">Chiudi</button>
+                <p>PUOI REGISTRARE UN EVENTO</p>
+            </div>
+
         </div>
      </div>
+     
      
 
     

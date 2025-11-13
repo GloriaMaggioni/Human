@@ -8,12 +8,13 @@ import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [MatMenuModule ],
+  imports: [MatMenuModule, ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
 export class Navbar {
 
+  // da sistemare per renderlo funzionante e dinamico
 userImgPanel = [
   {image : 'Immagine'},
   { nome: 'Nome'},
@@ -22,7 +23,22 @@ userImgPanel = [
 ]
    
 
+isOpen = false;
+isCreate = signal(false);
 
+createPost() {
+  this.isOpen = !this.isOpen;
+  if(this.isCreate() == true){
+    this.isOpen =  false;
+  }
+}
+
+createNewUser(){
+    this.isCreate.update(open => !open);
+     if(this.isOpen == true){
+    this.isCreate.set(false);
+  }
+}
   
   
 

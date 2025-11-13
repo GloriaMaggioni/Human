@@ -18,6 +18,20 @@
     margin:auto;
 }
 
+.post-form, .newUser-form{
+    border:3px solid blue;
+    background-color: grey;
+    z-index: 80;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%)
+}
+.closedBtn:hover{
+    background-color: orange;
+    color:white;
+    cursor:pointer;
+}
 
 .search-btn:hover,
 .search-icon:hover,
