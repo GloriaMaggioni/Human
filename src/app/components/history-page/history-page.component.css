@@ -1,13 +1,13 @@
 .carousel{
     /* border:1px solid black; */
     width:50%;
-    height: 30%;
+    height: 24%;
     margin-top:10px;
     margin-left: 5%;   
-     background-image: url('/assets/images/LeonardoDaVinci.jpg') ;
-    background-size: cover;
-    background-repeat:no-repeat;
-   background-position: 20% 20%; 
+     background-image: url('/assets/images/LeonardoDaVinci2.jpg') ;
+     background-size: cover;
+    background-repeat:no-repeat; 
+   background-position: 20% 25%; 
    position:relative;
    overflow:none;
 }
@@ -25,6 +25,7 @@
 .carousel-image {
     margin-left:10%;
     vertical-align:center;
+    
 
 }
 .carousel-text-container{
@@ -33,9 +34,16 @@
     } 
 }
 .carousel-textSecondary{
-    margin-top:8%;
+    margin-top:5%;
     h4{
         margin-bottom:1%;
     }
    
+}
+
+.city-name {
+     font-family: "Inknut Antiqua", serif;
+    font-weight: 500;
+    font-style: normal;
+
 }

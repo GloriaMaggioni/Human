@@ -1,14 +1,30 @@
-<section class="history-page">
-    <div class="carousel  flex items-center rounded-lg gap-5 overflow-hidden" >
-        <img  src="assets/images/LeonardoDaVinci.jpg" alt=""  class="carousel-image w-40 h-40 z-50 rounded-lg flex-shrink-0">
+<section class="history-page h-full border border-solid border-black flex flex-col justify-between">
+    
+    <div class="carousel  flex items-center rounded-lg gap-5 overflow-hidden " >
+        <img  src="assets/images/LeonardoDaVinci2.jpg" alt=""  class="carousel-image w-35 h-40 m-2 z-50 rounded-lg flex-shrink-0 ">
 
         <div class="carousel-text-container  h-40 text-black z-50">
-            <h3 class="carousel-citazione text-3xl text-balance  text-center italic">“Il saper vedere è il vero motore del mondo”</h3>
+            <h3 class="carousel-citazione mt-2 text-3xl text-balance  text-center italic">“Il saper vedere è il vero motore del mondo”</h3>
+
             <div class="carousel-textSecondary flex flex-col">
                 <h4 class="carousel-nameCharacter text-base font-medium">Leonardo Da Vinci(1452 - 1519)</h4>
                <p class="carousel-professionText text-sm text-gray-600">Scienziato, inventore artista italiano</p>
             </div>
         </div>
      </div> 
-     
+
+     <div class="citiesCards-container  w-[75%] align-middle m-auto gap-4 border border-solid border-red-600 flex flex-wrap justify-center">
+        @for(items of cityCard; track $index){
+            <div class="city-card w-42 h-40 m-4 relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform border border-solid border-yellow-600">
+                
+                <a [routerLink]="items.link" class=" h-full w-full ">
+                    <img src="{{items.img}}" alt="" class="object-cover h-full w-full z-1">
+                    <span class="city-name absolute ml-6 z-50 inset-0 flex items-end mb-2  font-semibold text-white  text-3xl ">{{items.label}}</span>
+                </a>
+            </div>
+
+        }
+     </div> 
+
+<router-outlet></router-outlet>     
 </section>

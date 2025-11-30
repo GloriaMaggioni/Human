@@ -11,6 +11,7 @@ import { PlacesAndSpacesPageComponent } from './components/places-and-spaces-pag
 import { ProductivityAndHealthPageComponent } from './components/productivity-and-health-page/productivity-and-health-page.component';
 import { UtentsPageComponent } from './components/utents-page/utents-page.component';
 import { SettingsPageComponent } from './components/settings-page/settings-page.component';
+import { MilanoComponent } from './citiesPages/milano/milano.component';
 
 
 
@@ -19,6 +20,7 @@ export const routes: Routes = [
         {path: '', component: HomepageComponent},
         {path: 'events', component: EventsPage},
         {path: 'history', component: HistoryPageComponent},
+        {path: 'milan', component: MilanoComponent},
         {path: 'future', component: FuturePageComponent},
         {path:'placesandspaces', component: PlacesAndSpacesPageComponent},
         {path: 'productivityandhealth', component: ProductivityAndHealthPageComponent},

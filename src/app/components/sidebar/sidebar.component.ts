@@ -23,11 +23,8 @@ events: string|readonly any[]|null|undefined;
 largeLogo = '/assets/images/logo-blackGold.png';
 smallLogo = 'assets/images/logoImg-2.svg';
 
-
   isOpen = signal(true);
   currentLogo = this.largeLogo;
-
-
 
  items = [
     {
