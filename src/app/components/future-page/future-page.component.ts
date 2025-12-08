@@ -1,11 +1,56 @@
 import { Component } from '@angular/core';
+import { carousel } from '../carousel/carousel.model';
+import { CarouselComponent } from '../carousel/carousel.component';
+import { RouterLink, RouterOutlet } from "@angular/router";
+
 
 @Component({
   selector: 'app-future-page',
-  imports: [],
+  imports: [CarouselComponent, RouterLink, RouterOutlet],
   templateUrl: './future-page.component.html',
   styleUrl: './future-page.component.css'
 })
 export class FuturePageComponent {
+  
+    cityCard = [
+      {
+        link: '/milano',
+        img: '/assets/images/Milano.jpg',
+        label:'Milano'
+      },
+       {
+        link: '/monza',
+        img: '/assets/images/Monza.jpg',
+        label:'Monza'
+  
+      },
+       {
+        link: '/lecco',
+        img: '/assets/images/Lecco.jpg',
+        label:'Lecco'
+      },
+       {
+        link: '/como',
+        img: '/assets/images/Como.jpg',
+        label:'Como'
+      },
+     
+    ];
+  
+    carousel: carousel [] = [
+       { 
+        id: 1,
+        img :'/assets/charactersImages/LeonardoDaVinci2.jpg', 
+        cit: '"Il saper vedere è il vero motore del mondo "', 
+        name: 'Leonardo Da Vinci', 
+        bornDate: 1452,
+        deathDate:  1519,
+        profession: 'Scienziato, inventore artista italiano',
+        background: '/assets/charactersImages/LeonardoDaVinci2.jpg'
+  
+      }
+    ]
+    
+  
 
 }
