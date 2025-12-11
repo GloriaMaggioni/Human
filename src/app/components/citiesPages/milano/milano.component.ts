@@ -14,7 +14,6 @@ export class MilanoComponent implements OnInit, OnDestroy {
   //CREATION CAROUSEL
  carousel :  carousel [] = [
     { 
-      id: 1,
       img :'/assets/charactersImages/AdaNegri.jpg', 
       cit: '"Io scrivo per dare una voce a chi non ne ha"', 
       name: 'Ada Negri ', 
@@ -24,7 +23,6 @@ export class MilanoComponent implements OnInit, OnDestroy {
       background: 'assets/charactersImages/AdaNegri.jpg'
     },
      {
-      id: 2,
       img :'/assets/charactersImages/ClaraMaffei.jpg', 
       cit: '"Il dialogo e l\'arte sono la vera forza di un popolo"', 
       name: 'Clara Maffei ', 
@@ -35,7 +33,6 @@ export class MilanoComponent implements OnInit, OnDestroy {
 
     },
      { 
-      id: 3,
       img :'/assets/charactersImages/CristinaTrivulzio.jpg', 
       cit: '"La libertà è un bene che non si riceve in dono, ma si conquista"', 
       name: 'Cristina Trivulzio', 

@@ -11,7 +11,6 @@ import { CarouselComponent } from '../../carousel/carousel.component';
 export class ComoComponent {
    carousel :  carousel [] = [
       { 
-        id: 1,
         img :'/assets/charactersImages/AntonioSantElia.jpg', 
         cit: '"Le case dureranno meno di noi.Ogni generazione dovrà fabbricarsi la sua città"', 
         name: 'Antonio Sant\'Eelia ', 
@@ -21,7 +20,6 @@ export class ComoComponent {
         background: '/assets/charactersImages/AntonioSantElia.jpg'
       },
        {
-        id: 2,
         img :'/assets/charactersImages/GaetanoPreviati.jpg', 
         cit: '"Per dipingere una figura non bisogna farla: bisogna farne l\'atmosfera"', 
         name: 'Gaetano Previati ', 
@@ -32,7 +30,6 @@ export class ComoComponent {
   
       },
        { 
-        id: 3,
         img :'/assets/charactersImages/GiuseppeTerragni.jpg', 
         cit: '"Tradizione è nello spirito,non nella forma"', 
         name: 'Giuseppe Terragni', 

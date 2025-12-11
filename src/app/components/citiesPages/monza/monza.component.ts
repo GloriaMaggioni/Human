@@ -15,7 +15,6 @@ export class MonzaComponent {
 
   carousel :  carousel [] = [
     { 
-      id: 1,
       img :'/assets/charactersImages/GiuseppeLonghi.jpg', 
       cit: '"L\' incisione è pittura tradotta in segno"', 
       name: 'Giuseppe Maria Longhi', 
@@ -25,7 +24,6 @@ export class MonzaComponent {
       background: '/assets/charactersImages/GiuseppeLonghi.jpg'
     },
      { 
-      id: 2,
       img :'/assets/charactersImages/PompeoMariani.jpg', 
       cit: '"Il paesaggio è parola di luce"', 
       name: 'Pompeo Mariani', 
@@ -36,7 +34,6 @@ export class MonzaComponent {
 
     },
      { 
-      id: 3,
       img :'/assets/charactersImages/ElisabettaKeller.jpg', 
       cit: '"La sola cosa peggiore di non avere la vista è di non avere visione. "', 
       name: 'Elisabetta Keller', 

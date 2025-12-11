@@ -10,7 +10,6 @@ import { carousel } from '../../carousel/carousel.model';
 export class LeccoComponent {
    carousel :  carousel [] = [
     { 
-      id: 1,
       img :'/assets/charactersImages/AntonioStoppani.jpg', 
       cit: '"La natura è un libro aperto per chi sa leggerlo"', 
       name: 'Andrea Stoppani ', 
@@ -20,7 +19,6 @@ export class LeccoComponent {
       background: '/assets/charactersImages/AntonioStoppani.jpg'
     },
      {
-      id: 2,
       img :'/assets/charactersImages/CarloMauri.jpg', 
       cit: '"L\'avventura è scuola di vita"', 
       name: 'Carlo Mauri', 
@@ -28,10 +26,8 @@ export class LeccoComponent {
       deathDate:  1982,
       profession: 'Alpinista, esploratore e scrittore',
       background: '/assets/charactersImages/CarloMauri.jpg'
-
     },
      { 
-      id: 3,
       img :'/assets/charactersImages/GiuseppeParini.jpg', 
       cit: '"Ben folle è quegli che a rischio de la vita onor si merca."', 
       name: 'Giuseppe Parini', 
@@ -39,7 +35,6 @@ export class LeccoComponent {
       deathDate:  1799,
       profession: 'Poeta',
       background: '/assets/charactersImages/GiuseppeParini.jpg'
-
     }
   ]
 

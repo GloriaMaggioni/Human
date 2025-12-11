@@ -1,5 +1,4 @@
 export interface carousel {
-     id: number,
   img: string,
   cit: string,
   name: string,
