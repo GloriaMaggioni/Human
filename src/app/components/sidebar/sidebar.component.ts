@@ -2,7 +2,7 @@ import { Component, ElementRef, signal, ViewChild} from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterModule } from "@angular/router";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
-import { CommonModule, NgClass, NgComponentOutlet } from '@angular/common';
+import { NgClass, NgComponentOutlet } from '@angular/common';
 import {MatListModule} from '@angular/material/list';
 import { FormsModule } from "@angular/forms";
 import {MatIconModule} from '@angular/material/icon';
@@ -11,7 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [MatSidenavModule, MatButtonModule, MatListModule, FormsModule, MatIconModule,RouterModule, CommonModule],
+  imports: [MatSidenavModule, MatButtonModule, MatListModule, FormsModule, MatIconModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
