@@ -6,8 +6,8 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { NgOptimizedImage } from '@angular/common';
 //Inizializzazione del realtime database di firebase
- import {initializeApp} from 'firebase/app';
-
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
 // Dati configurazione database
 const firebaseConfig = {
   apiKey: "AIzaSyDfiU_iONRiAqGo-7LW-yMHUrmnW--R73A",
@@ -29,5 +29,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), provideClientHydration(withEventReplay()), 
     provideHttpClient(withFetch()),
     // provideFirebaseApp( () => initializeApp(appConfig))
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideDatabase(() => getDatabase()),
   ]
 };

@@ -27,6 +27,7 @@
     "@angular/common": "^21.0.5",
     "@angular/compiler": "^21.0.5",
     "@angular/core": "^21.0.5",
+    "@angular/fire": "^20.0.1",
     "@angular/forms": "^21.0.5",
     "@angular/material": "^20.2.4",
     "@angular/material-luxon-adapter": "^20.2.4",
