@@ -1,25 +1,32 @@
 import { Injectable } from '@angular/core';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { History_Characters, Future_Characters } from '../components/carousel/characters.model';
-import {Database,set,ref} from '@firebase/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadCharactersService {
 
-  constructor(private db : Database) { }
-  
-  async uploadCharacters () {
-    try {
-       const charactersRef = ref(this.db, 'characters');
+  constructor(private firestore : Firestore){}
+  async uploadCharacters(){
+      const historyCollection = collection(this.firestore, 'historyCharacters');
+      const futureCollection = collection(this.firestore, 'futureCharacters');
 
-       await set(charactersRef, {
-        history: History_Characters,
-        future: Future_Characters
-       }); 
-       alert('Caricato tutto')
-    }catch(error) {
-      console.log('Errore', error)
-    }
+     const historyPromises =  History_Characters.map( ( character) =>{
+          addDoc(historyCollection, character)
+      });
+      await Promise.all(historyPromises);
+      console.log('HistoryCharacters caricati');
+
+
+     const futurePromises = Future_Characters.map( (character) => {
+         addDoc(futureCollection, character)
+      });
+      await Promise.all(futurePromises);
+      console.log('FutureCharacters caricati')
+
+     
+
+
   }
 }

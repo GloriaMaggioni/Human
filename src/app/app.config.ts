@@ -7,12 +7,11 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { NgOptimizedImage } from '@angular/common';
 //Inizializzazione del realtime database di firebase
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideDatabase, getDatabase } from '@angular/fire/database';
+import {provideFirestore, getFirestore } from '@angular/fire/firestore';
 // Dati configurazione database
 const firebaseConfig = {
-  apiKey: "AIzaSyDfiU_iONRiAqGo-7LW-yMHUrmnW--R73A",
+ apiKey: "AIzaSyDfiU_iONRiAqGo-7LW-yMHUrmnW--R73A",
   authDomain: "humanitas-14ec9.firebaseapp.com",
-  databaseURL: "https://humanitas-14ec9-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "humanitas-14ec9",
   storageBucket: "humanitas-14ec9.firebasestorage.app",
   messagingSenderId: "366536092616",
@@ -28,8 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes), provideClientHydration(withEventReplay()), 
     provideHttpClient(withFetch()),
-    // provideFirebaseApp( () => initializeApp(appConfig))
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideDatabase(() => getDatabase()),
+    provideFirestore( () => getFirestore())
   ]
 };
