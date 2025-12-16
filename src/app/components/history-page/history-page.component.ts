@@ -1,15 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from "@angular/router";
 import { carousel } from '../carousel/carousel.model';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { FirestoreService } from '../../services/firestore-service';
 
 @Component({
   selector: 'app-history-page',
-  imports: [RouterLink, RouterOutlet, CarouselComponent],
+  standalone:true,
+  imports: [RouterLink, RouterOutlet, CarouselComponent,],
   templateUrl: './history-page.component.html',
   styleUrl: './history-page.component.css'
 })
-export class HistoryPageComponent {
+export class HistoryPageComponent implements OnInit{
+  characters: any[]=[]
+  constructor(private firestoreService: FirestoreService){}
+  
+
+
+  ngOnInit(): void {
+       this.prendiCharacters()
+  
+  }
+   async prendiCharacters(){
+   this.characters = await this.firestoreService.getCharacters('history')
+  }
 
   cityCard = [
     {
@@ -36,18 +50,11 @@ export class HistoryPageComponent {
    
   ];
 
-  carousel: carousel [] = [
-     { 
-      img :'/assets/charactersImages/LeonardoDaVinci2.jpg', 
-      cit: '"Il saper vedere è il vero motore del mondo "', 
-      name: 'Leonardo Da Vinci', 
-      bornDate: 1452,
-      deathDate:  1519,
-      profession: 'Scienziato, inventore artista italiano',
-      background: '/assets/charactersImages/LeonardoDaVinci2.jpg'
-
-    }
-  ]
+  // carousel: carousel [] = [
+   
+  // ]
   
 
 }
+
+

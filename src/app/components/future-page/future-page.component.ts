@@ -6,6 +6,7 @@ import { RouterLink, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-future-page',
+  standalone:true,
   imports: [CarouselComponent, RouterLink, RouterOutlet],
   templateUrl: './future-page.component.html',
   styleUrl: './future-page.component.css'
@@ -38,16 +39,16 @@ export class FuturePageComponent {
     ];
   
     carousel: carousel [] = [
-       { 
-        img :'/assets/charactersImages/LeonardoDaVinci2.jpg', 
-        cit: '"Il saper vedere è il vero motore del mondo "', 
-        name: 'Leonardo Da Vinci', 
-        bornDate: 1452,
-        deathDate:  1519,
-        profession: 'Scienziato, inventore artista italiano',
-        background: '/assets/charactersImages/LeonardoDaVinci2.jpg'
+      //  { 
+      //   img :'/assets/charactersImages/LeonardoDaVinci2.jpg', 
+      //   cit: '"Il saper vedere è il vero motore del mondo "', 
+      //   name: 'Leonardo Da Vinci', 
+      //   bornDate: 1452,
+      //   deathDate:  1519,
+      //   profession: 'Scienziato, inventore artista italiano',
+      //   background: '/assets/charactersImages/LeonardoDaVinci2.jpg'
   
-      }
+      // }
     ]
     
   

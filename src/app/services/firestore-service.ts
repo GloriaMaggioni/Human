@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getDocs, collection,query, where } from 'firebase/firestore';
+import { getDocs, collection,query, where } from '@angular/fire/firestore/lite';
 import { Firestore } from '@angular/fire/firestore';
 
 @Injectable({

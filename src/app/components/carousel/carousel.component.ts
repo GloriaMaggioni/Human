@@ -18,6 +18,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   constructor(private cdr: ChangeDetectorRef){}
 
 
+
   get currentCharacter(): carousel{
    return this.carousel[this.currentId]
   }

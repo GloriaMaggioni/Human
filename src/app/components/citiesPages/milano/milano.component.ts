@@ -5,6 +5,7 @@ import { carousel } from '../../carousel/carousel.model';
 
 @Component({
   selector: 'app-milano',
+  standalone:true,
   imports: [NgStyle],
   templateUrl: './milano.component.html',
   styleUrl: './milano.component.css'
@@ -13,36 +14,36 @@ export class MilanoComponent implements OnInit, OnDestroy {
 
   //CREATION CAROUSEL
  carousel :  carousel [] = [
-    { 
-      img :'/assets/charactersImages/AdaNegri.jpg', 
-      cit: '"Io scrivo per dare una voce a chi non ne ha"', 
-      name: 'Ada Negri ', 
-      bornDate: 1870,
-      deathDate:  1945,
-      profession: 'Poetessa e scrittrice, prima donna ammessa all’Accademia D’Italia',
-      background: 'assets/charactersImages/AdaNegri.jpg'
-    },
-     {
-      img :'/assets/charactersImages/ClaraMaffei.jpg', 
-      cit: '"Il dialogo e l\'arte sono la vera forza di un popolo"', 
-      name: 'Clara Maffei ', 
-      bornDate: 1814,
-      deathDate:  1886,
-      profession: 'Fondatrice del salotto letterario che ispirò il Risorgimento milanese',
-      background: 'assets/charactersImages/ClaraMaffei.jpg'
+//     { 
+//       img :'/assets/charactersImages/AdaNegri.jpg', 
+//       cit: '"Io scrivo per dare una voce a chi non ne ha"', 
+//       name: 'Ada Negri ', 
+//       bornDate: 1870,
+//       deathDate:  1945,
+//       profession: 'Poetessa e scrittrice, prima donna ammessa all’Accademia D’Italia',
+//       background: 'assets/charactersImages/AdaNegri.jpg'
+//     },
+//      {
+//       img :'/assets/charactersImages/ClaraMaffei.jpg', 
+//       cit: '"Il dialogo e l\'arte sono la vera forza di un popolo"', 
+//       name: 'Clara Maffei ', 
+//       bornDate: 1814,
+//       deathDate:  1886,
+//       profession: 'Fondatrice del salotto letterario che ispirò il Risorgimento milanese',
+//       background: 'assets/charactersImages/ClaraMaffei.jpg'
 
-    },
-     { 
-      img :'/assets/charactersImages/CristinaTrivulzio.jpg', 
-      cit: '"La libertà è un bene che non si riceve in dono, ma si conquista"', 
-      name: 'Cristina Trivulzio', 
-      bornDate: 1808,
-      deathDate:  1871,
-      profession: 'Patriota, giornalista e intellettuale',
-      background: 'assets/charactersImages/CristinaTrivulzio.jpg'
+//     },
+//      { 
+//       img :'/assets/charactersImages/CristinaTrivulzio.jpg', 
+//       cit: '"La libertà è un bene che non si riceve in dono, ma si conquista"', 
+//       name: 'Cristina Trivulzio', 
+//       bornDate: 1808,
+//       deathDate:  1871,
+//       profession: 'Patriota, giornalista e intellettuale',
+//       background: 'assets/charactersImages/CristinaTrivulzio.jpg'
 
-    }
-  ]
+//     }
+   ]
 
   //TRASFORM THE CAROUSEL INTO THE DINAMIC CAROUSEL
   currentId : number= 0;

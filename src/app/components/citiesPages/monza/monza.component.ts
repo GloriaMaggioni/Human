@@ -7,6 +7,7 @@ import { ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-monza',
+  standalone:true,
   imports: [CarouselComponent, ],
   templateUrl: './monza.component.html',
   styleUrl: './monza.component.css'
@@ -14,35 +15,35 @@ import { ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 export class MonzaComponent {
 
   carousel :  carousel [] = [
-    { 
-      img :'/assets/charactersImages/GiuseppeLonghi.jpg', 
-      cit: '"L\' incisione è pittura tradotta in segno"', 
-      name: 'Giuseppe Maria Longhi', 
-      bornDate: 1766,
-      deathDate:  1831,
-      profession: 'Incisore, pittore e docente all\'Accademia di Brera',
-      background: '/assets/charactersImages/GiuseppeLonghi.jpg'
-    },
-     { 
-      img :'/assets/charactersImages/PompeoMariani.jpg', 
-      cit: '"Il paesaggio è parola di luce"', 
-      name: 'Pompeo Mariani', 
-      bornDate: 1857,
-      deathDate:  1927,
-      profession: 'Pittore',
-      background: '/assets/charactersImages/PompeoMariani.jpg'
+    // { 
+    //   img :'/assets/charactersImages/GiuseppeLonghi.jpg', 
+    //   cit: '"L\' incisione è pittura tradotta in segno"', 
+    //   name: 'Giuseppe Maria Longhi', 
+    //   bornDate: 1766,
+    //   deathDate:  1831,
+    //   profession: 'Incisore, pittore e docente all\'Accademia di Brera',
+    //   background: '/assets/charactersImages/GiuseppeLonghi.jpg'
+    // },
+    //  { 
+    //   img :'/assets/charactersImages/PompeoMariani.jpg', 
+    //   cit: '"Il paesaggio è parola di luce"', 
+    //   name: 'Pompeo Mariani', 
+    //   bornDate: 1857,
+    //   deathDate:  1927,
+    //   profession: 'Pittore',
+    //   background: '/assets/charactersImages/PompeoMariani.jpg'
 
-    },
-     { 
-      img :'/assets/charactersImages/ElisabettaKeller.jpg', 
-      cit: '"La sola cosa peggiore di non avere la vista è di non avere visione. "', 
-      name: 'Elisabetta Keller', 
-      bornDate: 1891,
-      deathDate:  1969,
-      profession: 'Pittrice e ritrattista',
-      background: '/assets/charactersImages/ElisabettaKeller.jpg'
+    // },
+    //  { 
+    //   img :'/assets/charactersImages/ElisabettaKeller.jpg', 
+    //   cit: '"La sola cosa peggiore di non avere la vista è di non avere visione. "', 
+    //   name: 'Elisabetta Keller', 
+    //   bornDate: 1891,
+    //   deathDate:  1969,
+    //   profession: 'Pittrice e ritrattista',
+    //   background: '/assets/charactersImages/ElisabettaKeller.jpg'
 
-    }
+    // }
   ]
   
 }
