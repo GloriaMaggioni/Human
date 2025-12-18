@@ -1,18 +1,19 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { getDocs, collection,query, where } from '@angular/fire/firestore/lite';
-import { Firestore } from '@angular/fire/firestore';
+ import { Firestore } from '@angular/fire/firestore/lite';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirestoreService {
-  constructor(private firestore : Firestore){}
+  private firestore : Firestore =  inject (Firestore)  // da vedere se è meglio della scelta prima (riga successiva)
+  // constructor(private firestore : Firestore){}
 
   async getCharacters(tipo: 'history'| 'future', city?: string){
      const collectionName = tipo === 'history'  ? 'historyCharacters' : 'futureCharacters'
      const collectionRef = collection(this.firestore, collectionName)
 
-     //chiamata a firestore in base se city c\'è o no
+     //chiamata a firestore in base se city c'è o no
      let charactersReturn;
      if(!city){
       charactersReturn = await getDocs(collectionRef);
