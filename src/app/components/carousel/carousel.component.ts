@@ -18,9 +18,10 @@ export class CarouselComponent implements OnInit, OnDestroy {
   constructor(private cdr: ChangeDetectorRef){}
 
 
-
+//restituisce l'array dei dati 
   get currentCharacter(): carousel{
    return this.carousel[this.currentId]
+  
   }
   ngOnInit(): void{
     this.start()

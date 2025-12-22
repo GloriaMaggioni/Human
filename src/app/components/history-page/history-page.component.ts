@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from "@angular/router";
 import { carousel } from '../carousel/carousel.model';
 import { CarouselComponent } from '../carousel/carousel.component';
@@ -13,7 +13,8 @@ import { FirestoreService } from '../../services/firestore-service';
 })
 export class HistoryPageComponent implements OnInit{
    characters: any[]=[]
-  constructor(private firestoreService: FirestoreService){}
+   private firestoreService =  inject(FirestoreService)
+  // constructor(private firestoreService: FirestoreService){}
   
 
 
@@ -22,10 +23,14 @@ export class HistoryPageComponent implements OnInit{
   
   }
    async prendiCharacters(){
-   this.characters = await this.firestoreService.getCharacters('history');
-    // console.log(this.characters)
+   this.characters = await this.firestoreService.getCharacters('history')
+     console.log(this.characters)
+ 
    
   }
+   
+   
+
 
   cityCard = [
     {
@@ -52,9 +57,7 @@ export class HistoryPageComponent implements OnInit{
    
   ];
 
-  carousel: carousel [] = [
-   
-   ]
+
   
 
 }
