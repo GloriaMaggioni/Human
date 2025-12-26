@@ -10,6 +10,7 @@ import { NgOptimizedImage, NgStyle } from '@angular/common';
   styleUrl: './carousel.component.css'
 })
 export class CarouselComponent implements OnInit, OnDestroy {
+   
  @Input()  carousel : carousel[] = []
   //TRASFORM THE CAROUSEL INTO THE DINAMIC CAROUSEL
   currentId : number= 0;
