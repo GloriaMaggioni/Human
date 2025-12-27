@@ -37,23 +37,29 @@ export class HistoryPageComponent implements OnInit{
     {
       link: '/milano',
       img: '/assets/images/Milano.jpg',
-      label:'Milano'
+      label:'Milano',
+      category: 'history'
     },
      {
       link: '/monza',
       img: '/assets/images/Monza.jpg',
-      label:'Monza'
+      label:'Monza',
+      category: 'history'
 
     },
      {
       link: '/lecco',
       img: '/assets/images/Lecco.jpg',
-      label:'Lecco'
+      label:'Lecco',
+      category: 'history'
+
     },
      {
       link: '/como',
       img: '/assets/images/Como.jpg',
-      label:'Como'
+      label:'Como',
+      category: 'history'
+
     },
    
   ];
