@@ -2,30 +2,38 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Response } from 'express';
 import { Observable } from 'rxjs';
+import { futureNewsCard } from '../models/futureNews.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsCityService {
-
   /*
-     1. fare chiamata API per ricevere le news
-        -scegliere il sito da cui prendere le news
-     2.filtare le news in base a
-          - città
-          -categoria: 
-             -history
-             -future
-      3.Mandare i dati al componente che li visualizza
-  
+    mia chiave api
+     Id = 799cetvgyj7yux255fpuqrprj
+     Codice chiave segreto = 3wtdsq09fx149nsgn0ix96hntwq91oslv7d7tzn1fel0wiz8ts
+     App token = e5SVtvD4Ebdo4zmx942J5o1ad
   */
-  
-      // API del Minitero della Cultura
-      private apiEventUrl = 'https://opendata.beniculturali.it/ws/rest'
 
-
+      private http = inject(HttpClient);
     
 
 
-        
+      //API della Regione Lombardia
+      private apiUrl = 'https://www.dati.lombardia.it/resource/uzy5-pr9h.json';   // dataset per Eventi culturali
+
+      getNewsEvents(){
+        return this.http.get<any[]>(this.apiUrl)
+      }
+
+      getNewsEventsLimit(limit: number){
+        const params = new HttpParams().set('$limit', limit.toString());
+        return this.http.get<any[]>(this.apiUrl, {params})
+      }
+
 }
+
+   
+
+        
+

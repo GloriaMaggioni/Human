@@ -4,9 +4,13 @@ import { Interface } from "readline"
 
 export interface Card {
   image: string,
-  id: number,
   title: string,
-  date: number,
-  place: string,
-  description: string
+  day: string,
+  startHour: string,
+  finishHour: string,
+  location: string,
+  description: string,
+  city: string
+  category: string,
 }
+

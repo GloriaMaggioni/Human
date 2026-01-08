@@ -15,7 +15,7 @@
         </div>
         
         <!-- EVENTS LIST  GROUP-->
-        <div class="eventsList-container w-[60%] max-h-[100%]  ml-[8%] mt-3 border border-solid border-blue-950">
+        <div class="eventsList-container w-[60%] max-h-full  ml-[8%] mt-3 border border-solid border-blue-950">
           <!-- TABS -->
           <div class="eventList-tabsGroup w-[70%] m-auto mt-3 flex justify-evenly " >
              @for(item of tabs; track $index){          
@@ -33,9 +33,9 @@
     @for(item of cards; track cards){
        <img [src]="item.image" alt="">
       <h5>{{item.title}}</h5>
-      <p>{{item.date}} </p>
+      <!-- <p>{{item.date}} </p>
       <p>{{item.place}}</p>
-       <p>{{item.description}}</p>
+       <p>{{item.description}}</p> -->
 
     } 
 

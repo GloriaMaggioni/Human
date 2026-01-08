@@ -1,8 +1,10 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
 import { carousel } from '../../models/carousel.model';
 import { CarouselComponent } from '../carousel/carousel.component';
-import { RouterLink, RouterOutlet } from "@angular/router";
+import {  RouterOutlet } from "@angular/router";
 import { FirestoreService } from '../../services/firestore-service';
+import { NewsCityService } from '../../services/news-city.service';
+import { futureNewsCard } from '../../models/futureNews.model';
 
 
 @Component({
@@ -14,51 +16,30 @@ import { FirestoreService } from '../../services/firestore-service';
 })
 export class FuturePageComponent implements OnInit{
   characters : any[] = []
+
   private firestoreService = inject(FirestoreService);
   private cdr = inject(ChangeDetectorRef)
+  
+   newsCard : futureNewsCard[] = []
+   private futureNewsService  = inject(NewsCityService)
+  
 
   ngOnInit(): void {
     this.prendiCharacters()
-    
+    this.futureNewsService.getNewsEventsLimit(10).subscribe({
+      next: (data: futureNewsCard[]) => this.newsCard = data,
+      error: err => console.error('Errore:', err)
+    })
+    console.log(this.newsCard)
   }
+
+  // presi i dati dei personaggi per il carousel
   async prendiCharacters(){
     this.characters= await this.firestoreService.getCharacters('future');
     this.cdr.detectChanges();
-    console.log(this.characters)
+    // console.log(this.characters)
   }
   
-    // cityCard = [
-    //   {
-    //     link: '/milano',
-    //     img: '/assets/images/Milano.jpg',
-    //     label:'Milano',
-    //     category: 'future'
-    //   },
-    //    {
-    //     link: '/monza',
-    //     img: '/assets/images/Monza.jpg',
-    //     label:'Monza',
-    //     category: 'future'
-    //   },
-    //    {
-    //     link: '/lecco',
-    //     img: '/assets/images/Lecco.jpg',
-    //     label:'Lecco',
-    //     category: 'future'
 
-    //   },
-    //    {
-    //     link: '/como',
-    //     img: '/assets/images/Como.jpg',
-    //     label:'Como',
-    //     category: 'future'
-    //   },
-     
-    // ];
-  
-   
-     
-    
-  
 
 }
