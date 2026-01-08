@@ -1,6 +1,10 @@
-.city-name {
-     font-family: "Inknut Antiqua", serif;
-    font-weight: 500;
-    font-style: normal;
+.pagination{
+    color: #4a5565;
+    font-size:14px;
 
+    a:hover {
+        color:#ffffff;
+        background-color: #e66a0c
+
+    }
 }
