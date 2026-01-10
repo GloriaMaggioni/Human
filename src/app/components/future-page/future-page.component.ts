@@ -5,12 +5,13 @@ import {  RouterOutlet } from "@angular/router";
 import { FirestoreService } from '../../services/firestore-service';
 import { NewsCityService } from '../../services/news-city.service';
 import { futureNewsCard } from '../../models/futureNews.model';
+import { Paginator } from '../paginator/paginator';
 
 
 @Component({
   selector: 'app-future-page',
   standalone:true,
-  imports: [CarouselComponent, RouterOutlet],
+  imports: [CarouselComponent, RouterOutlet, Paginator],
   templateUrl: './future-page.component.html',
   styleUrl: './future-page.component.css'
 })
@@ -22,12 +23,15 @@ export class FuturePageComponent implements OnInit{
   
    newsCard : futureNewsCard[] = []
    private futureNewsService  = inject(NewsCityService)
-   currentPage = 1;
+   @Input() currentPage: number = 1;
+   limit: number = 10; // numero di news da visualizzare per pagina
+ 
+
 
   ngOnInit(): void {
-    this.prendiCharacters()
-    this.loadNews()
-    
+    this.prendiCharacters();
+     this.loadNews(); 
+   
   }
 
   // presi i dati dei personaggi per il carousel
@@ -35,17 +39,22 @@ export class FuturePageComponent implements OnInit{
     this.characters= await this.firestoreService.getCharacters('future');
     this.cdr.detectChanges();
   }
-  
+
+
   loadNews(){
     const offset = (this.currentPage - 1) * 10;
-    const limit = 10
 
-    this.futureNewsService.getNewsEvents( limit,offset).subscribe({
-      next: (data: futureNewsCard[]) => this.newsCard = data,
-      error: err => console.error('Errore:', err)
+    this.futureNewsService.getNewsEvents( 10,offset).subscribe({
+      next: data =>{
+        this.newsCard = data;
+      },
+      error: err =>{ 
+        console.error('Errore:', err)
+      }
     })
-    console.log(this.newsCard)
+     console.log(this.newsCard)
   }
 
+  
 
 }

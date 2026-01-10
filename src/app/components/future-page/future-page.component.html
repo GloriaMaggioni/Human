@@ -19,75 +19,26 @@
      <div class="eventsList-container border border-solid border-red-700 w-full  m-t-6">
         @for(card of newsCard; track $index){
          <div class="evento-card border border-solid border-gray-400 w-[60%] h-fit m-auto mt-4 p-4 rounded-md">
-          <h3 class="font-semibold text-lg"> {{card.titolo_evento}}</h3>
-         <div class=" w-[40%] mt-1 text-gray-600  p-1 flex justify-between  align-middle ">    
-           
-               <p class="tipology  ">{{card.tipologia}}</p>
-             <p class="locality">{{card.localita}}</p> 
-             <p class="data">{{card.data}}</p>
-             <p class="dataEvent  bg-amber-600 text-white pl-1 pr-1 mr-2 rounded-md">{{card.orario_evento}}</p>
-
-             
-            
-         </div>
-        <p class=" mt-2 text-small">{{card.descrizione_evento}}</p>
-
-        </div>
-
-        }
-        
-       
+            <div class="event-title w-fit flex justify-evenly align-middle ">
+             <h3 class="font-bold text-2xl p-1 "> {{card.titolo_evento}}</h3>
+             <h4 class="h-fit text-sm ml-4  p-1 rounded-md border border-solid border-amber-600 bg-amber-600 text-white align-middle">{{card.tipologia}}</h4>
+            </div>
+             <div class=" w-[40%] mt-1 text-gray-600  p-1 flex justify-between  align-middle ">    
+                 <!-- <p class="tipology  ">{{card.tipologia}}</p> -->
+                 <p class="locality">{{card.localita}}</p> 
+                 <p class="data">{{card.data}}</p>
+                 <p class="dataEvent   pl-1 pr-1 mr-2 font-black">{{card.orario_evento}}</p>
+            </div>
+            <p class=" mt-2 text-small">{{card.descrizione_evento}}</p>
+          </div>
+        }  
      </div>
 
-     <nav class="paginationNav-container m-auto mt-4 ">
-      <ul class="pagination flex ">
-         <li>
-            <a href="" class="prev-btn  px-2 py-2 rounded-l-sm  border border-solid border-gray-500  hover:text-white">Previous</a>
-         </li>
-           <li>
-            <a href="" class="number-btn  px-3 py-2  border border-gray-500  ">1</a>
-         </li>
-         <li>
-            <a href=""  class="number-btn  px-3 py-2  border border-gray-500  ">2</a>
-         </li>
-         <li>
-            <a href=""  class="number-btn  px-3 py-2  border border-gray-500  ">3</a>
-         </li>
-         <li>
-            <a href=""  class="number-btn   px-3 py-2  border border-gray-500 ">4</a>
-         </li>
-         <li>
-            <a href="" class="next-btn   px-2 py-2 rounded-r-sm border border-gray-500 hover:bg-amber-600 hover:text-white">Next</a>
-         </li>
-       
-      </ul>
-     </nav>
-     <!-- <nav class="mt-4 m-auto">
-  <ul class="flex -space-x-px text-sm">
-    <li>
-      <a href="#" class="flex items-center justify-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading font-medium rounded-s-base text-sm px-3 h-9 focus:outline-none">Previous</a>
-    </li>
-    <li>
-      <a href="#" class="flex items-center justify-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading font-medium text-sm w-9 h-9 focus:outline-none">1</a>
-    </li>
-    <li>
-      <a href="#" class="flex items-center justify-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading font-medium text-sm w-9 h-9 focus:outline-none">2</a>
-    </li>
-    <li>
-      <a href="#" aria-current="page" class="flex items-center justify-center text-fg-brand bg-neutral-tertiary-medium box-border border border-default-medium hover:text-fg-brand font-medium text-sm w-9 h-9 focus:outline-none">3</a>
-    </li>
-    <li>
-      <a href="#" class="flex items-center justify-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading font-medium text-sm w-9 h-9 focus:outline-none">4</a>
-    </li>
-    <li>
-      <a href="#" class="flex items-center justify-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading font-medium text-sm w-9 h-9 focus:outline-none">5</a>
-    </li>
-    <li>
-      <a href="#" class="flex items-center justify-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading font-medium rounded-e-base text-sm px-3 h-9 focus:outline-none">Next</a>
-    </li>
-  </ul>
-</nav> -->
-   
+      <div class="paginationNav-container m-auto mt-4  border border-solid border-blue-800">
+          <app-paginator></app-paginator>
+      
+      </div> 
+     
 
     <router-outlet></router-outlet>  
 </section>

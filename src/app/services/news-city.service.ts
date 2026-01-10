@@ -1,13 +1,16 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Response } from 'express';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { futureNewsCard } from '../models/futureNews.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsCityService {
+      getTotaLCounts() {
+        throw new Error('Method not implemented.');
+      }
   /*
     mia chiave api
      Id = 799cetvgyj7yux255fpuqrprj
@@ -20,14 +23,18 @@ export class NewsCityService {
 
 
       //API della Regione Lombardia
-      private apiUrl = 'https://www.dati.lombardia.it/resource/uzy5-pr9h.json';   // dataset per Eventi culturali
+      private apiUrl = 'https://www.dati.lombardia.it/resource/uzy5-pr9h.json';   // dataset per Eventi culturali 199 elementi max
 
-      getNewsEvents(limit: number, offset:number = 0){
+      getNewsEvents(limit: number, offset:number = 0): Observable<any>{
         const params = new HttpParams()
            .set('$limit', limit.toString())
            .set('$offset', offset.toString())
-        return this.http.get<any[]>(this.apiUrl, {params})
+         
+         return this.http.get<any[]>(this.apiUrl, {params})
+        
       }
+
+  
 
   
 }
