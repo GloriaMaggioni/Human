@@ -24,7 +24,8 @@ export class FuturePageComponent implements OnInit{
    newsCard : futureNewsCard[] = []
    private futureNewsService  = inject(NewsCityService)
    @Input() currentPage: number = 1;
-   limit: number = 10; // numero di news da visualizzare per pagina
+    limit: number = 10; // numero di news da visualizzare per pagina
+ 
  
 
 
@@ -42,9 +43,9 @@ export class FuturePageComponent implements OnInit{
 
 
   loadNews(){
-    const offset = (this.currentPage - 1) * 10;
+    const offset = (this.currentPage - 1) * this.limit;
 
-    this.futureNewsService.getNewsEvents( 10,offset).subscribe({
+    this.futureNewsService.getNewsEvents(this.limit,offset).subscribe({
       next: data =>{
         this.newsCard = data;
       },
@@ -55,6 +56,8 @@ export class FuturePageComponent implements OnInit{
      console.log(this.newsCard)
   }
 
-  
+  changePage(page: number): void{
+     this.currentPage = page;
+  }
 
 }

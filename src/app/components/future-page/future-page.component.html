@@ -24,7 +24,6 @@
              <h4 class="h-fit text-sm ml-4  p-1 rounded-md border border-solid border-amber-600 bg-amber-600 text-white align-middle">{{card.tipologia}}</h4>
             </div>
              <div class=" w-[40%] mt-1 text-gray-600  p-1 flex justify-between  align-middle ">    
-                 <!-- <p class="tipology  ">{{card.tipologia}}</p> -->
                  <p class="locality">{{card.localita}}</p> 
                  <p class="data">{{card.data}}</p>
                  <p class="dataEvent   pl-1 pr-1 mr-2 font-black">{{card.orario_evento}}</p>
@@ -35,7 +34,7 @@
      </div>
 
       <div class="paginationNav-container m-auto mt-4  border border-solid border-blue-800">
-          <app-paginator></app-paginator>
+          <app-paginator [currentPage]="currentPage" ></app-paginator>
       
       </div> 
      
