@@ -19,7 +19,7 @@ export class Paginator implements OnInit  {
      pages: number[] = [];
 
      ngOnInit(): void {
-      const pageCount: number = Math.ceil(this.totalPages / this.newsForPage)
+      const pageCount: number = Math.ceil(this.totalPages / this.newsForPage)   // pagine tot servite per mostrare le pagine
       this.numberPage()
        
      }
@@ -28,7 +28,7 @@ export class Paginator implements OnInit  {
        for(let i = this.currentPage; i <= this.totalPages; i++){  // mostra i numeri delle pagine dinamicamente
           this.pages.push(i)
         }
-        //  console.log(this.pages)
+          console.log(this.pages)
      }
 
 

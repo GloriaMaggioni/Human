@@ -25,8 +25,7 @@ export class FuturePageComponent implements OnInit{
    private futureNewsService  = inject(NewsCityService)
    @Input() currentPage: number = 1;
     limit: number = 10; // numero di news da visualizzare per pagina
-     offset = (this.currentPage - 1) * this.limit;
-
+     offset = (this.currentPage - 1) * this.limit; // indica alla API da quale pagina partire
 
 
 
@@ -44,45 +43,37 @@ export class FuturePageComponent implements OnInit{
     this.cdr.detectChanges();
   }
 
-
-  loadNews(){
-    // const offset = (this.currentPage - 1) * this.limit;
-    let offset = this.offset
+  // funzione per mostrare le news dalla chiamata API al server di Regione Lombardia
+  loadNews(){   
+    let offset = this.offset;
+     console.log('Sto chiamando API con offset:', offset, 'limit:', this.limit);
 
     this.futureNewsService.getNewsEvents(this.limit,offset).subscribe({
       next: data =>{
+        console.log('Ricevuto dall\'API:', data);
         this.newsCard = data;
-        console.log( 'offset dentro loadnews', this.offset)
-          console.log('currentPage dentro loadnews', this.currentPage)
-        
-
+        this.cdr.detectChanges();
+    
       },
       error: err =>{ 
         console.error('Errore:', err)
       }
     })
-     console.log(this.newsCard)
+   
   }
 
   //evento click per il cambio pagina con le news nuove
 onChangePage(pageNumber : number){
-  this.currentPage = pageNumber;
-  if(pageNumber > this.currentPage){
-    this.offset++;
-    this.loadNews()
-    console.log('pageNumber maggiore currentPage')
-  }else if (pageNumber < this.currentPage && pageNumber > 0){
-    this.offset--
-    this.loadNews();
-        console.log('pageNumber minore currentPage')
-  } else  if(pageNumber = 0){
-     this.offset = 0;
-    console.log('pageNumber uguale a zero')
+   if( pageNumber < 1) return     // controllo per valori negativi: se false ferma tutto
+   
 
-   }
-
-
+   this.currentPage =  pageNumber;
+   this.offset =  (this.currentPage - 1) * this.limit;
+   this.loadNews();
 }
  
+prev(){
+  this.offset = (this.currentPage - 1);
+}
 
 }
