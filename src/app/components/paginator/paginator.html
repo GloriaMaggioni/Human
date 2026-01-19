@@ -3,7 +3,7 @@
   <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
     <div>
       <nav aria-label="Pagination" class="isolate inline-flex -space-x-px rounded-md shadow-xs">
-        <a href="#" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-900 inset-ring inset-ring-gray-300  hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0" > Previous </a>
+        <a  class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-900 inset-ring inset-ring-gray-300 hover:cursor-pointer hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0" (click)="prev()"> Previous </a>
         @for(page of pages; track $index){
              <a href="javascript:void(0)" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 inset-ring inset-ring-gray-300 hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0"
               (click)="changePageClick(page)"
@@ -11,7 +11,7 @@
              >{{page}}</a>
         }
        
-        <a href="#" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-900 inset-ring inset-ring-gray-300  hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0">
+        <a  class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-900 inset-ring inset-ring-gray-300 hover:cursor-pointer hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0" (click)="next()">
           Next
          
         </a>

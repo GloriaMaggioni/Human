@@ -16,18 +16,16 @@ import { Paginator } from '../paginator/paginator';
   styleUrl: './future-page.component.css'
 })
 export class FuturePageComponent implements OnInit{
-  characters : any[] = []
-
-  private firestoreService = inject(FirestoreService);
+   private firestoreService = inject(FirestoreService);
   private cdr = inject(ChangeDetectorRef)
-  
-   newsCard : futureNewsCard[] = []
-   private futureNewsService  = inject(NewsCityService)
+     private futureNewsService  = inject(NewsCityService)
+
+    characters : any[] = []    // array per immagazzinare i dati per il carousel
+
+   newsCard : futureNewsCard[] = []    // array per imagazzinare i dati per le news
    @Input() currentPage: number = 1;
     limit: number = 10; // numero di news da visualizzare per pagina
      offset = (this.currentPage - 1) * this.limit; // indica alla API da quale pagina partire
-
-
 
 
 
@@ -46,11 +44,9 @@ export class FuturePageComponent implements OnInit{
   // funzione per mostrare le news dalla chiamata API al server di Regione Lombardia
   loadNews(){   
     let offset = this.offset;
-     console.log('Sto chiamando API con offset:', offset, 'limit:', this.limit);
 
     this.futureNewsService.getNewsEvents(this.limit,offset).subscribe({
       next: data =>{
-        console.log('Ricevuto dall\'API:', data);
         this.newsCard = data;
         this.cdr.detectChanges();
     
@@ -66,14 +62,10 @@ export class FuturePageComponent implements OnInit{
 onChangePage(pageNumber : number){
    if( pageNumber < 1) return     // controllo per valori negativi: se false ferma tutto
    
-
    this.currentPage =  pageNumber;
    this.offset =  (this.currentPage - 1) * this.limit;
    this.loadNews();
 }
- 
-prev(){
-  this.offset = (this.currentPage - 1);
-}
+
 
 }

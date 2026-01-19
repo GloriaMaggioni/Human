@@ -18,8 +18,6 @@ export class NewsCityService {
 
       private http = inject(HttpClient);
     
-
-
       //API della Regione Lombardia
       private apiUrl = 'https://www.dati.lombardia.it/resource/uzy5-pr9h.json';   // dataset per Eventi culturali 199 elementi max
 

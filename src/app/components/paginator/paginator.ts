@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NewsCityService } from '../../services/news-city.service';
 
+
 @Component({
   selector: 'app-paginator',
   imports: [],
@@ -11,16 +12,17 @@ export class Paginator implements OnInit  {
 
 @Input() currentPage: number = 1
  @Input() newsForPage = 10;   //numero news per pagina
- @Input() totalPages : number = 20  // numero tot di pagine
+ @Input() totalPages : number = 20;  // numero tot di pagine
   @Output() changePage :  EventEmitter<any> = new EventEmitter()
-
+ 
 
 
      pages: number[] = [];
 
      ngOnInit(): void {
-      const pageCount: number = Math.ceil(this.totalPages / this.newsForPage)   // pagine tot servite per mostrare le pagine
+      const totalPages: number = Math.ceil(this.totalPages / this.newsForPage)   // pagine tot servite per mostrare le news
       this.numberPage()
+     
        
      }
 
@@ -38,6 +40,21 @@ export class Paginator implements OnInit  {
       this.changePage.emit(pageNumber)
      }
 
+    prev(){
+      
+         this.changePage.emit(this.currentPage - 1)   
+          console.log('paginacorrente', this.currentPage)
+       
 
+    }
+    next(){
+      this.changePage.emit(this.currentPage + 1)     
+      console.log('paginacorrente', this.currentPage)
+    
+    
+    }
   
-}
+  
+   
+   }
+  
