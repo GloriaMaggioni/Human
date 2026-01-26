@@ -20,27 +20,17 @@ private firestoreService = inject(FirestoreService);
 private cdr = inject(ChangeDetectorRef)
 private futureNewsService  = inject(NewsCityService)
 
-    characters : any[] = []    // array per immagazzinare i dati per il carousel
-    newsCard : futureNewsCard[] = []    // array per imagazzinare i dati per le news
-   /*
-     ho bisogno: ---> li imposto come @Input() senza dargli un valore (vengono dati i valori dal paginator)
-        1. currentPage -- > prende solo il dato dal paginator(viene impostato in paginator)    
-        2. totalPages ---> prende solo il dato dal paginator(viene calcolato in paginator)
-        3.offset
-        4.imposta newsPerPage
-   */
-    
-  /*
-     @Input() currentPage: number = 1;
-    limit: number = 10; // numero di news da visualizzare per pagina
-     offset = (this.currentPage - 1) * this.limit; // indica alla API da quale pagina partire
 
-*/
-
-
-    @Input() currentPage: number = 1  ;     //DA CONTROLLARE PERCHè IMPOSTANDO COSI CURRENTPAGE E LIMIT FUNZIONA 
-    @Input() limit: number = 20;    // indica le newsPerPage
+    @Input() currentPage: number = 1  ;   
+    @Input() limit: number = 10 ;           // indica le newsPerPage     
     @Input() offset: number = (this.currentPage - 1) * this.limit;
+     @Input() totalNews : number = 0;     // numero totale di news di default
+   
+
+    characters : any[] = []              // array per immagazzinare i dati per il carousel
+    newsCard : futureNewsCard[] = []    // array per imagazzinare i dati per le news
+
+
 
 
   ngOnInit(): void {
@@ -57,13 +47,14 @@ private futureNewsService  = inject(NewsCityService)
   
   // funzione per mostrare le news dalla chiamata API al server di Regione Lombardia
   loadNews(){   
-    let newsPerPage = this.offset;
+    let offset = this.offset;
 
-    this.futureNewsService.getNewsEvents(this.limit, newsPerPage).subscribe({
+    this.futureNewsService.getNewsEvents(this.limit, offset).subscribe({
       next: data =>{
         this.newsCard = data;
+        this.totalNews = 200;         
         this.cdr.detectChanges();
-    
+        console.log('news totali', this.totalNews)
       },
       error: err =>{ 
         console.error('Errore:', err)
@@ -71,7 +62,7 @@ private futureNewsService  = inject(NewsCityService)
     })
    
   }
-/*
+
   //evento click per il cambio pagina con le news nuove
 onChangePage(pageNumber : number){
    if( pageNumber < 1) return     // controllo per valori negativi: se false ferma tutto
@@ -81,5 +72,5 @@ onChangePage(pageNumber : number){
    this.loadNews();
 }
 
-*/
+
 }
