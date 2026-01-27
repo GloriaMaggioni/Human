@@ -52,9 +52,8 @@ private futureNewsService  = inject(NewsCityService)
     this.futureNewsService.getNewsEvents(this.limit, offset).subscribe({
       next: data =>{
         this.newsCard = data;
-        this.totalNews = 200;         
+        this.totalNews = 200;         //impostato manualmente: il backend non da questa info
         this.cdr.detectChanges();
-        console.log('news totali', this.totalNews)
       },
       error: err =>{ 
         console.error('Errore:', err)

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NewsCityService } from '../../services/news-city.service';
-
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-paginator',
-  imports: [],
+  imports: [NgClass],
   templateUrl: './paginator.html',
   styleUrl: './paginator.css',
 })
@@ -25,7 +25,6 @@ export class Paginator implements OnInit, OnChanges  {
 
 
   ngOnInit(): void {
-   
     this.paginatorLength()
   }
 
@@ -37,17 +36,15 @@ export class Paginator implements OnInit, OnChanges  {
   
   }
 
-   // aumentare/diminuire la lunghezza del paginator dinamicamente
+   // aumentare/diminuire la lunghezza del paginator dinamicamente e calcolo delle pagine totali
     paginatorLength(){ 
       if(this.totalNews > 0) {
       this.totalPages = Math.ceil(this.totalNews / this.newsPerPage)    // calcolo del totale delle pagine
-   }       
+      }       
       let start = 1;      
       let end = this.totalPages                                             // dove finisce il paginator
        this.pages = Array.from({length: end - start + 1}, (_, i) => i + 1)  // calcolo della lunghezza dell'array delle news
-       console.log('questo è totalPages:', this.totalPages)
-       console.log('questo è pages:', this.pages)
-      }
+    }
 
 
     // evento click (verso il padre)

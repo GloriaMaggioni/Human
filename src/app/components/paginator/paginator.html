@@ -6,7 +6,11 @@
         <a  class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-900 inset-ring inset-ring-gray-300 hover:cursor-pointer hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0" (click)="prev()"> Previous </a>
              @for(page of pages; track $index){
               <a href="javascript:void(0)" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 inset-ring inset-ring-gray-300 hover:bg-amber-600 hover:text-white focus:z-20 focus:outline-offset-0 focus:bg-amber-600 focus:text-white"
-              (click)="changePageClick(page)">
+              (click)="changePageClick(page)"
+              [ngClass]="{
+                'bg-amber-600 text-white': currentPage === page,  
+                ' background-color:rgba(245, 245, 245, 1) text-gray-900' : currentPage !== page, 
+              }">
                 {{page}}
               </a>
              }
