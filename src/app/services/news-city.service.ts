@@ -14,7 +14,7 @@ private http = inject(HttpClient);
      
      //API della Regione Lombardia
       private futureApiUrl = 'https://www.dati.lombardia.it/resource/uzy5-pr9h.json';   // dataset per Eventi culturali 199 elementi max (FUTURE PAGE)
-      private historyApiUrl = 'https://www.dati.lombardia.it/resource/h3my-i92n.json';  // dataset per Luoghi culturali da visitare (HISTORY PAGE)
+      // private historyApiUrl = 'https://www.dati.lombardia.it/resource/4mr7-hfsh.json';  // dataset per Luoghi culturali da visitare (HISTORY PAGE)
 
     // Chiamata API per FuturePage
       getNewsEvents(limit: number, offset:number = 0): Observable<any>{   // limit -->  quanti el mostrare per pagina
@@ -27,6 +27,23 @@ private http = inject(HttpClient);
       }
   
     // Chiamata Api per HistoryPage
+    // getCultureItems(limit: number, offset:number = 0): Observable<any> {    // chiamata di prova: da sistemare nel caso
+    //   const params = new HttpParams() 
+    //        .set('$limit', limit.toString())
+    //        .set('$offset', offset.toString())
+      
+    //   return this.http.get<any[]>(this.historyApiUrl, {params})    // capire perchè mi da errore con parametri
+    // }
+
+
+    fetchData(endpoint: string, limit: number, offset: number = 0): Observable<any> {
+
+       const params = new HttpParams()
+          .set('$limit', limit.toString())
+          .set('$offset', offset.toString())
+
+       return this.http.get<any[]>(endpoint, {params})
+    }
   
 }
 

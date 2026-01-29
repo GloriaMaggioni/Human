@@ -15,6 +15,24 @@
     </div>
 
     <!-- Cities Cards Container -->
-     
+     <div class="cultureItems-conatiner w-full border border-solid border-amber-600">
+        <h3>LISTA DI ITEMS </h3>
+        <div class="card-container">
+            <!-- <h4>Nome oggetto </h4>
+            <p>categoria</p>
+            <p>epoca</p>
+            <p>tipologia</p>
+            <p>comune e cap</p>
+            <p>abstract</p>
+            <p>descrizione</p> -->
+        </div>
+        @for(card of  itemsCard; track $index){
+            <div class="card border border-solid border-amber-600">
+                <h4>{{card.denominazione}}</h4>
+                <p> Nome categoria: {{card.categoria}}</p>
+            </div>
+        }
+     </div>
+     <app-paginator ></app-paginator>
     <router-outlet></router-outlet>     
 </section>
