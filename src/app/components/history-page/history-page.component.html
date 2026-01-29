@@ -15,22 +15,6 @@
     </div>
 
     <!-- Cities Cards Container -->
-    <!-- <div class="citiesCards-container w-full md:w-[95%] lg:w-[80%] xl:w-[80%] m-auto gap-4 flex flex-wrap justify-center px-2 py-2">
-        @for(item of cityCard; track $index){
-            <div class="city-card w-full sm:w-[calc(50%-1rem)] md:w-42 lg:w-42 xl:w-42 h-40 md:h-40 lg:h-40 m-2 md:m-4 relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform border border-solid border-yellow-600 shadow-md"> 
-                <a [routerLink]="item.link" class="h-full w-full block relative">
-                    <img 
-                        src="{{item.img}}" 
-                        alt="{{item.label}}" 
-                        class="object-cover h-full w-full">
-                    <div class="absolute inset-0 bg-black opacity-15"></div>
-                    <span class="city-name absolute ml-3 md:ml-4 z-50 inset-0 flex items-end mb-2 font-semibold text-white text-xl md:text-2xl">
-                        {{item.label}}
-                    </span>
-                </a>
-            </div>
-        }
-    </div> -->
-
+     
     <router-outlet></router-outlet>     
 </section>
