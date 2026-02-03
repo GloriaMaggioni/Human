@@ -22,7 +22,8 @@ export class HistoryPageComponent implements OnInit{
    private historyApiUrl = 'https://www.dati.lombardia.it/resource/4mr7-hfsh.json';
    @Input() limit : number = 20;
    @Input() currentPage : number = 1
-   offset :  number = (this.currentPage - 1) * this.limit
+   offset :  number = (this.currentPage - 1) * this.limit;
+   @Input() totalItems : number = 0;
 
     characters: any[]=[];
     itemsCard : CultureItems[] = [];           // immagazzina i dati da visualizzare nelle card
@@ -36,6 +37,7 @@ export class HistoryPageComponent implements OnInit{
   ngOnInit(): void {
        this.prendiCharacters();
        this.getCultureItems();
+
   }
    async prendiCharacters(){
    this.characters = await this.firestoreService.getCharacters('history');
@@ -50,6 +52,7 @@ export class HistoryPageComponent implements OnInit{
     this.historyService.fetchData(this.historyApiUrl, this.limit, this.offset).subscribe({
        next: data =>{
          this.itemsCard = data;
+          this.totalItems = 1800;
          this.cdr.detectChanges();
        },
        error : err =>{
@@ -70,6 +73,14 @@ export class HistoryPageComponent implements OnInit{
  }
   
 
+
+ onChangePage(pageNumber : number){
+   if( pageNumber < 1) return     // controllo per valori negativi: se false ferma tutto
+   
+   this.currentPage =  pageNumber;
+   this.offset =  (this.currentPage - 1) * this.limit;
+   this.getCultureItems();
+}
 }
 
 

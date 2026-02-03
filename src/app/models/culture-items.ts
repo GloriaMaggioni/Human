@@ -2,10 +2,10 @@
 
 export class CultureItems {
     categoria? : string
-    denominazione?: string
+    denominazione?: string | undefined
     definizione?: string
     autore? : string
-    epoca?: string
+    epoca?: string | undefined
     provincia?: string
     siglaprovincia?: string
     comune?: string
@@ -14,8 +14,6 @@ export class CultureItems {
     materia?: string          //vedere se mantenerlo
     abstract?: string         // capire la differenza con la descrizione
     descrizione?: string       // non è sempre presente
-    // dataCompilazione?: string
-    // tipologia?: string
     notiziestoriche?: string | undefined 
     
 }

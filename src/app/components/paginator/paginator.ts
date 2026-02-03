@@ -19,7 +19,7 @@ export class Paginator implements OnInit, OnChanges  {
    @Output() changePage : EventEmitter<any> = new EventEmitter()     // evento per cambiare la pagina al click
   
     pages : number[] = [];    // array per immagazzinare il numero delle pagine 
-    visibleBtn : number[] = []     // array per i btn visibili sotto i 1280px di screen
+    visibleBtn : number[] = []     // array per i btn visibili 
 
 
 
@@ -36,25 +36,15 @@ export class Paginator implements OnInit, OnChanges  {
       this.updateVisibleBtn()
    }
 
-   updateVisibleBtn(){                     //decide quali btn del paginator far vedere sotto i 1280px di screen
-      if(typeof window !== 'undefined'){
-       const width = window.innerWidth;    // indica la dimensione dello schermo
-
-        if(width < 1280){                     //dallo scermo grande in giù
-       
-           this.visibleBtn = [1, this.currentPage, this.pages.length]
-        } else{
-           this.visibleBtn = this.pages
-        }
-
-      }   
+   updateVisibleBtn(){                     //decide quali btn del paginator far vedere 
+       this.visibleBtn = [1, this.currentPage, this.pages.length]
    }
 
   ngOnChanges(changes: SimpleChanges):void {            // controlla se totalNews e newsPerpage cambiano
     if(changes['totalNews'] || changes['newsPerPage']){         
-       this.paginatorLength()
+       this.paginatorLength();
     }
-    this.updateVisibleBtn()
+    this.updateVisibleBtn();
   
   }
 
