@@ -2,7 +2,7 @@
 
 import { Interface } from "readline"
 
-export interface Card { 
+export interface Card {      // TODO: DA SISTEMARE LA STRUTTURA DEI DATI E INSERIRE I CAMPI CORRETTI
   name?: string,
   info?: string,        
   classifications? : {
