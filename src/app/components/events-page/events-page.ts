@@ -2,7 +2,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { EventCardService } from '../../services/event-card.service';
-import { Card } from '../../models/eventCard.model';
+import { EventCard } from '../../models/eventCard.model';
 import { NewsService } from '../../services/news.service';
 
 
@@ -43,7 +43,7 @@ selectedIndex: number = 0
   // private apiKey ="6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n";
   // private endPoint = this.baseUrl + this.apiKey;
   private apiUrl = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n';
-  cards: Card[] = [];
+  cards: EventCard[] = [];
 
 
   ngOnInit(): void {
@@ -60,7 +60,7 @@ selectedIndex: number = 0
           console.log('Dati events', data._embedded?.events)
           this.cards = data._embedded?.events || [];
           console.log('Primo evento', this.cards[0])
-          // console.log('Questi sono i dati di risposta', this.cards)
+          console.log('PROMOTER', this.cards[2])
         },
         error: err => console.error('Errore nella chiamata:', err)
       }
