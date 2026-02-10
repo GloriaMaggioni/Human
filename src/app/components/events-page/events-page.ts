@@ -1,23 +1,25 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
-import { EventCardService } from '../../services/event-card.service';
 import { EventCard } from '../../models/eventCard.model';
 import { NewsService } from '../../services/news.service';
+import { Paginator } from '../paginator/paginator';
+import { ChangeDetectorRef } from '@angular/core';
 
 
 
 
 @Component({
   selector: 'app-events-page',
-  imports: [MatButtonModule, MatSidenavModule, ],
+  standalone: true,
+  imports: [MatButtonModule, MatSidenavModule,Paginator ],
   templateUrl: './events-page.html',
   styleUrl: './events-page.css'
 })
 
 export class EventsPage implements OnInit{
- private eventCardService = inject(EventCardService)
- private  callApi = inject(NewsService)
+ private cdr = inject(ChangeDetectorRef);
+ private  callApi = inject(NewsService);
  @Input() currentPage : number = 1;
  @Input() limit : number = 20;
   offset : number = (this.currentPage - 1) * this.limit
@@ -31,20 +33,19 @@ selectedIndex: number = 0
 
   tabs = [
     { label: 'All' },
-    { label: 'Art' },
-    { label: 'Tech' },
-    { label: 'Business' },
-    { label: 'Social' },
-    { label: 'Book' },
-    { label: 'Economy' }
+    { label: 'Art & Theater' },
+    { label: 'Museum/ Exhibits' },
+    { label: 'Readings' },
+    { label: 'Plays' },
+    { label: 'Book' },   // lecture
+    { label: 'Multimedia' }
   ];
 
-  private baseUrl = "https://app.ticketmaster.com/discovery/v2/events.json?6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n"  // TODO: vedere se url va bene cosi oppure no
-  // private apiKey ="6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n";
-  // private endPoint = this.baseUrl + this.apiKey;
   private apiUrl = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n';
   cards: EventCard[] = [];
 
+ el : any = null;
+ isOpen = false;
 
   ngOnInit(): void {
     this.getEvents()
@@ -56,17 +57,26 @@ selectedIndex: number = 0
     this.callApi.fetchData(this.apiUrl, this.limit, this.offset).subscribe(
       {
         next: data =>{
-          console.log('Dati embedded', data._embedded)
-          console.log('Dati events', data._embedded?.events)
+          // console.log('Dati embedded', data._embedded)
           this.cards = data._embedded?.events || [];
+           this.cdr.detectChanges();
           console.log('Primo evento', this.cards[0])
-          console.log('PROMOTER', this.cards[2])
         },
         error: err => console.error('Errore nella chiamata:', err)
       }
     )
     
     
+  }
+
+  openDetails(index : number){
+    this.el = this.cards[index];
+    this.isOpen= true
+  }
+
+  closeDetails(){
+    this.isOpen= false
+     this.el = null;
   }
 
   
@@ -88,6 +98,7 @@ selectedIndex: number = 0
 
  https://app.ticketmaster.com/discovery/v2/events.json?apiKey=6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n&countryCode:IT&city=Milano&classificationName=Art
  https://app.ticketmaster.com/discovery/v2/events.json?apikey=6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n&countryCode=IT&region=Liguria  // funziona cambiado city con region
+ eventi libri= usare classificationName= lecture
 */
 
 /*

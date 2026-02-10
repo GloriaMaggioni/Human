@@ -10,7 +10,7 @@ import { NewsService } from '../../services/news.service';
 @Component({
   selector: 'app-history-page',
   standalone:true,
-  imports: [RouterOutlet, CarouselComponent, Paginator],
+  imports: [ CarouselComponent, Paginator],
   templateUrl: './history-page.component.html',
   styleUrl: './history-page.component.css'
 })
