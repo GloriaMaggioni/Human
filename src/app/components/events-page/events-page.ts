@@ -22,24 +22,23 @@ export class EventsPage implements OnInit{
  private cdr = inject(ChangeDetectorRef);
  private  callApi = inject(NewsService);
  @Input() currentPage : number = 1;
- @Input() limit : number = 20;
+ @Input() limit : number = 200;
   offset : number = (this.currentPage - 1) * this.limit
 
 // tab scelta categoria ---> da collegare al cambio delle card
 selectedIndex: number = 0
 
-  buttonSelected(index: number) {
+  buttonSelected(index: number) {    // indica quale tab è stato selezionato
     this.selectedIndex = index;
   }
 
-  tabs = [
-    { label: 'All' },
-    { label: 'Art & Theater' },
-    { label: 'Museum/ Exhibits' },
-    { label: 'Readings' },
-    { label: 'Plays' },
-    { label: 'Book' },   // lecture
-    { label: 'Multimedia' }
+  tabs = [         // array dei tabs
+    { label: 'All' , filter: ''},
+    { label: ' Theater' , filter: '&classificationId=KnvZfZ7v7l1'},
+    { label: 'Museum/Cultural' , filter: '&classificationId=KnuZfZ7v7nE'},
+    { label: 'Fine Art' , filter: '&classificationId=KnvZfZ7nl'},
+    { label: 'Lecture/Seminar' , filter: '&classificationName=lecture'},
+    { label: 'Spectacular' , filter: '&classificationId=KnvZfZ7v7la'},
   ];
 
   private apiUrl = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n';
@@ -58,10 +57,9 @@ selectedIndex: number = 0
     this.callApi.fetchData(this.apiUrl, this.limit, this.offset).subscribe(
       {
         next: data =>{
-          // console.log('Dati embedded', data._embedded)
           this.cards = data._embedded?.events || [];
            this.cdr.detectChanges();
-          console.log('Primo evento', this.cards[0])
+          console.log('Primo evento', this.cards)
         },
         error: err => console.error('Errore nella chiamata:', err)
       }

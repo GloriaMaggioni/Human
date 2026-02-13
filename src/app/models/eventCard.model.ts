@@ -3,7 +3,6 @@
 import { Interface } from 'readline';
 
 export interface EventCard {
-  // TODO: DA SISTEMARE LA STRUTTURA DEI DATI E INSERIRE I CAMPI CORRETTI
   id?: string; // ? vedere se serve
   name?: string;
   type?: string; // classe (es. evento, upSell, corso ,attrazione(es.sport),etc..)
@@ -63,12 +62,12 @@ export interface EventCard {
         subGenre?: { name?: string };    //NBA
         url?: string;
       };
-      externalLinks?: Array<{
-        facebook?: { url?: string };
-        homepage?: { url?: string };
-        instagram?: { url?: string };
-        twitter?: { url?: string };
-        wiki?: { url?: string };
+      externalLinks?: Array<{    // ? vedere se alla fine inserirli o no da qualcke parte
+        facebook?: Array<{ url?: string }>;
+        homepage?: Array<{ url?: string }>;
+        instagram?: Array<{ url?: string }>;
+        twitter?: Array<{ url?: string }>;
+        wiki?: Array<{ url?: string }>;
       }>;
     }>;
    
