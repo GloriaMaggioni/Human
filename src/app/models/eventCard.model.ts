@@ -1,4 +1,3 @@
-// INTERFACCIA PER LA EVENT CARD CON I PARAMETRI DA PRENDERE
 
 import { Interface } from 'readline';
 

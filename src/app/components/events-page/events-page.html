@@ -34,7 +34,7 @@
         @for (event of cards; track $index) {
           <div class="eventCard mb-2 m-4 p-6 border border-solid border-gray-400 rounded-md">
 
-            <div class="flex  w-fit  justify-evenly align-middle mb-2">
+            <div class="flex  w-fit  justify-evenly align-middle mb-2" (click)="buttonSelected($index)">
               <img [src]="event.images?.[0]?.url" alt="Immagine evento" class="w-[30%] h-full ">
               <div class="event-details ml-4 w-[90%] px-2 ">
                 <div class="titleEvent flex ">
@@ -46,11 +46,8 @@
                <p> <b class="font-mono">Promoter:</b> {{event.promoters?.[0]?.name}}</p>
                 <p> <b class="font-mono">Descrizione:</b>{{event.info}}</p>
                <p class="hover:cursor-pointer"> <b class="font-mono">Link:</b><a [href]="event.url" target="_blank" class="visited:text-red-800">{{ event.url }}</a> </p>
-               <button (click)="openDetails($index)" class=" mt-4 p-1 border border-amber-600 bg-amber-600 text-white rounded-md hover:cursor-pointer">More details...</button>
- 
-               <a href=""></a>
+               <button (click)="openDetails($index)" class=" mt-4 p-1 border border-amber-600 bg-amber-600 text-white rounded-md hover:cursor-pointer">More details...</button> 
               </div>
-
             </div>
 
           </div>
@@ -73,6 +70,6 @@
     </div>
   </div>
   <div class=" paginator-container m-auto mt-4 max-w-[80%]">
-      <app-paginator></app-paginator>
+      <app-paginator [currentPage]="currentPage" [totalNews]="totalEvents" [newsPerPage]="limit" (changePage)="onChangePage($event)"></app-paginator>
   </div>
 </section>

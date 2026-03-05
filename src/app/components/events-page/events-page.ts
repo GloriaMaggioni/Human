@@ -9,7 +9,8 @@ import { DatePipe } from '@angular/common';
 import { filter } from 'rxjs';
 
 
-
+// TODO: VERIFICARE SE FUNZIONA TUTTO CORRETTAMENTE: SITO NON FUNZIONANTE(è IN AGGIORNAMENTO)
+// ! VALUTARE SE USARE UN ALTRO SITO
 
 @Component({
   selector: 'app-events-page',
@@ -22,14 +23,17 @@ import { filter } from 'rxjs';
 export class EventsPage implements OnInit{
  private cdr = inject(ChangeDetectorRef);
  private  callApi = inject(NewsService);
+
  @Input() currentPage : number = 1;
- @Input() limit : number = 200;
-  offset : number = (this.currentPage - 1) * this.limit
+ @Input() limit : number = 20;
+ @Input() offset : number = (this.currentPage - 1) * this.limit;
+ @Input() totalEvents : number = 0;     // numero eventi di default
   
   private apiUrl = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n';
   cards: EventCard[] = [];   // immagazzina i dati per gli events
 
 selectedIndex: number = 0;        // tab scelta categoria 
+filter : string = ''        //  TODO: da verificare se così filter funziona
 
  el : any = null;
  isOpen = false;
@@ -37,31 +41,24 @@ selectedIndex: number = 0;        // tab scelta categoria
 
 
   ngOnInit(): void {
-    this.getEvents(this.tabs?.[0]?.filter)
+    this.getEvents()
    
   }
  tabs = [         // array dei tabs
     { label: 'All' , filter: ''},
-    // { label: ' Theater' , filter: '&classificationId=KnvZfZ7v7l1'},
-    // { label: 'Museum/Cultural' , filter: '&classificationId=KnuZfZ7v7nE'},
-    // // { label: 'Fine Art' , filter: '&classificationId=KnvZfZ7nl'},
-    // { label: 'Lecture/Seminar' , filter: '&classificationName=lecture'},
-    // { label: 'Spectacular' , filter: '&classificationId=KnvZfZ7v7la'},
-    // {label: 'Arts & Theater', filter: '&classificationName=Arts & Theatre'}
-// TODO: DA CONTROLLARE SE FUNZIONA(AGGIORNAMENTO SITO TICKETMASTER)
-     { label: 'Art & Theater', filter: '?classificationName=Arts & Theatre' },
-  { label: 'Museum/ Exhibits', filter: '?classificationName=Miscellaneous' },
-  { label: 'Readings', filter: '?classificationName=Arts & Theatre' },  // stesso di Art & Theater
-  { label: 'Plays', filter: '?classificationName=Theatre' },  // genre specifico
-  { label: 'Book', filter: '?classificationName=Lectures' },   // genre specifico 
-  { label: 'Multimedia', filter: '?classificationName=Film' }
+    { label: 'Art & Theater', filter: '?classificationName=Arts & Theatre' },
+    { label: 'Museum/ Exhibits', filter: '?classificationName=Miscellaneous' },
+    { label: 'Readings', filter: '?classificationName=Arts & Theatre' },  // stesso di Art & Theater
+    { label: 'Plays', filter: '?classificationName=Theatre' },  // genre specifico
+    { label: 'Book', filter: '?classificationName=Lectures' },   // genre specifico 
+    { label: 'Multimedia', filter: '?classificationName=Film' }
   ];
 
-// &classificationId=KZFzniwnSyZfZ7v7na
+  // TODO: VERIFICARE SE FUNZIONA CORRETTAMENTE
   buttonSelected(index: number) {    // indica quale tab è stato selezionato
     this.selectedIndex = index;
-     let filter =this.tabs?.[index].filter
-    this.getEvents(filter);
+      this.filter = this.tabs?.[index].filter
+    this.getEvents();
     console.log('filtro:', this.tabs?.[index].filter)
   }
 
@@ -70,11 +67,12 @@ selectedIndex: number = 0;        // tab scelta categoria
 
   
 
-  getEvents(filter: string){
+  getEvents(){
     this.callApi.fetchData((this.apiUrl + filter), this.limit, this.offset).subscribe(
       {
         next: data =>{
           this.cards = data._embedded?.events || [];
+          this.totalEvents = this.cards.length;   // TODO: DA VERIFICARE
            this.cdr.detectChanges();
           console.log('Primo evento', this.cards)
         },
@@ -95,6 +93,14 @@ selectedIndex: number = 0;        // tab scelta categoria
      this.el = null;
   }
 
+  // metodo per il cambio pagina con il paginator
+  onChangePage(pageNumber: number) {
+    if(pageNumber < 1) return;
+
+    this.currentPage = pageNumber;
+    this.offset = (this.currentPage - 1) * this.limit;
+    this.getEvents()
+  }
   
 }
 

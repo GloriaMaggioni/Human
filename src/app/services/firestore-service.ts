@@ -1,6 +1,6 @@
 import { inject, Injectable, Injector, OnInit, runInInjectionContext } from '@angular/core';
-import { getDocs, collection,query, where } from '@angular/fire/firestore/lite';
- import { Firestore } from '@angular/fire/firestore/lite';
+import { getDocs, collection,query, where } from '@angular/fire/firestore';
+ import { Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({

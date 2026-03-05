@@ -83,4 +83,3 @@ export class HistoryPageComponent implements OnInit{
 }
 }
 
-
