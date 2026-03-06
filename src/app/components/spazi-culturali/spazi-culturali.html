@@ -3,5 +3,19 @@
 
     <div class="cit-container w-[45%] h-[24%] mx-auto border border-blue-600">Citazione</div>
 
-    <div class="placeCard-conatiner w-[60%] m-auto p-4  border border-orange-600"></div>
+    <div class="placeCard-conatiner w-full h-[65vh] max-h-full m-auto p-4  border border-orange-600">
+
+        <mgl-map  class="w-full h-full"
+           [mapStyle]="'https://maps.geoapify.com/v1/styles/osm-carto/style.json?apiKey=d1ad74eafd3e488bb42a007edabf7856'"
+           [zoom]=[12]
+           [center]="[longitude, latitude]">
+            @for(places of place.features; track $index){
+            <mgl-marker 
+             [lngLat]="[places.properties.lon, places.properties.lat]">  C</mgl-marker>
+                
+            }
+          
+    
+    </mgl-map>
+    </div>
 </section>

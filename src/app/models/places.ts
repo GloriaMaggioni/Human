@@ -1,5 +1,4 @@
-export interface Places {
-    
+export interface Places { 
    features : Array<{
      properties : {
         name: string,
@@ -10,6 +9,8 @@ export interface Places {
         country?: string,
         country_code?: string,
         city?: string,            //'Lissone'
+        lat: number,   // valore obbligatorio
+        lon: number,   // valore obbligatorio
         contact?: {
             email?: string,
             phone?: string

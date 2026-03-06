@@ -2,10 +2,11 @@ import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/co
 import { NewsService } from '../../services/news.service';
 import { HttpParams } from '@angular/common/http';
 import { Places } from '../../models/places';
+import {NgxMapLibreGLModule} from '@maplibre/ngx-maplibre-gl'
 
 @Component({
   selector: 'app-spazi-culturali',
-  imports: [],
+  imports: [NgxMapLibreGLModule],
   templateUrl: './spazi-culturali.html',
   styleUrl: './spazi-culturali.css',
 })
@@ -28,7 +29,7 @@ export class SpaziCulturali implements OnInit {
   @Input() totalNews : number = 0;     // numero totale di news di default
 
 
-     place : Places[] = []   // vedere se va bene questo model o se crearne uno nuovo
+     place : Places = {features : []}   // model: oggetto con dentro features(array )
 
 ngOnInit(): void {
   this.getUserPosition()
