@@ -1,18 +1,18 @@
-import { ChangeDetectorRef, Component, ElementRef, inject, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, Input, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { NewsService } from '../../services/news.service';
 import { HttpParams } from '@angular/common/http';
 import { Places } from '../../models/places';
-import {NgxMapLibreGLModule} from '@maplibre/ngx-maplibre-gl'
 import { isPlatformBrowser } from '@angular/common';
- import { Marker, Map, config } from 'maplibre-gl';
+import { Map, MapStyle, Marker, config } from '@maptiler/sdk';
+import '@maptiler/sdk/dist/maptiler-sdk.css'; 
 
 @Component({
   selector: 'app-spazi-culturali',
-  imports: [NgxMapLibreGLModule],
+  imports: [],
   templateUrl: './spazi-culturali.html',
   styleUrl: './spazi-culturali.css',
 })
-export class SpaziCulturali implements OnInit {
+export class SpaziCulturali implements OnInit, AfterViewInit {
   private placesService = inject(NewsService);
   private cdr = inject(ChangeDetectorRef);
   private platformId = inject(PLATFORM_ID);
@@ -37,9 +37,12 @@ export class SpaziCulturali implements OnInit {
      mappa : Map | undefined      // mappa dei posti
 
 ngOnInit(): void {
-  this.getUserPosition()
   this.cdr.detectChanges()
   
+}
+ngAfterViewInit(): void {
+    this.getUserPosition()
+
 }
 
   
@@ -60,18 +63,27 @@ ngOnInit(): void {
 
          this.mappa =  new Map({
           container: this.mapContainer.nativeElement,
-          style:' https://maps.geoapify.com/v1/styles/osm-carto/style.json?apiKey=d1ad74eafd3e488bb42a007edabf7856',
+          style:'https://api.maptiler.com/maps/streets-v4/style.json?key=rYJiuA5nlKE7NmCUClBp',
           center: [this.longitude, this.latitude],
           zoom: 12
         }) 
+        console.log('dimensioni container:', 
+    this.mapContainer.nativeElement.offsetWidth,
+    this.mapContainer.nativeElement.offsetHeight
+)
+          console.log('centro mappa:', this.longitude, this.latitude);
+
 
         let param = new HttpParams()
           .set('filter', `circle:${this.longitude},${this.latitude},5000`);
 
           
+            this.mappa.on('load', () =>{
+              console.log('mappa caricata!')
+                this.getPlaces(param);
 
+            })
         
-        this.getPlaces(param);
         })
     }
 
@@ -87,18 +99,18 @@ ngOnInit(): void {
         this.placesService.fetchData((this.endpointApi + '&' + param),this.limit,this.offset).subscribe({
           next: (data : any) => {
             this.place = data;
-            this.place.features.forEach( positionPLace =>{
-               const marker = new Marker({color: 'green', anchor: 'bottom'})
-               .setLngLat([positionPLace.properties.lon, positionPLace.properties.lat])
+            this.place.features.forEach( positionPlace =>{
+              console.log('coordinate marker:', positionPlace.properties.lon, positionPlace.properties.lat);
+              console.log('marker aggiunto:', positionPlace.properties.name);
+               let marker = new Marker({color: 'green', anchor: 'bottom', draggable: false})
+                .setLngLat([positionPlace.properties.lon, positionPlace.properties.lat])
                 .addTo(this.mappa!)
             })
            this.cdr.detectChanges()    
            
             console.log('Dati da getPlaces', this.place)
-            console.log('primo luogo:', this.place.features[0].properties.lon, this.place.features[0].properties.lat);
           },
           error: (error : any) => {
-            console.error('Errore nel calcolo posizione utente', error)
             alert('Errore nel calcolo posizione utente', )
           }
           
