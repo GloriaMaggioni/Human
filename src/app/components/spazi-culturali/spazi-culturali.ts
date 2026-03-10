@@ -19,7 +19,7 @@ export class SpaziCulturali implements OnInit, AfterViewInit {
 
   private baseUrl : string = 'https://api.geoapify.com/v2/places?';
   private apiKey : string = 'apiKey=d1ad74eafd3e488bb42a007edabf7856';
-  private categories : string = '&categories=entertainment.culture,entertainment.museum';
+  private categories : string = '&categories=entertainment.culture,entertainment.museum,entertainment.culture.arts_centre';
    private endpointApi : string = `${this.baseUrl}${this.apiKey}${this.categories}` ; 
    
   // latitudine e longitudine
@@ -27,15 +27,16 @@ export class SpaziCulturali implements OnInit, AfterViewInit {
   public longitude : number = 0;
 
   @Input() currentPage: number = 1  ;   
-  @Input() limit: number = 30 ;           // indica le newsPerPage     
+  @Input() limit: number = 200 ;           // indica i postiPerpage   
   @Input() offset: number = (this.currentPage - 1) * this.limit;
-  @Input() totalNews : number = 0;     // numero totale di news di default
+  @Input() totalPlace: number = 0;     // numero totale di place di default
   @ViewChild('map')
   private mapContainer! : ElementRef<HTMLElement>
 
      place : Places = {features : []}   // model: oggetto con dentro features(array )
      mappa : Map | undefined      // mappa dei posti
 
+     marker : Marker | undefined;
 ngOnInit(): void {
   this.cdr.detectChanges()
   
@@ -65,17 +66,13 @@ ngAfterViewInit(): void {
           container: this.mapContainer.nativeElement,
           style:'https://api.maptiler.com/maps/streets-v4/style.json?key=rYJiuA5nlKE7NmCUClBp',
           center: [this.longitude, this.latitude],
-          zoom: 12
+          zoom: 8
         }) 
-        console.log('dimensioni container:', 
-    this.mapContainer.nativeElement.offsetWidth,
-    this.mapContainer.nativeElement.offsetHeight
-)
-          console.log('centro mappa:', this.longitude, this.latitude);
+          // console.log('centro mappa:', this.longitude, this.latitude);
 
 
         let param = new HttpParams()
-          .set('filter', `circle:${this.longitude},${this.latitude},5000`);
+          .set('filter', `circle:${this.longitude},${this.latitude},50000`);
 
           
             this.mappa.on('load', () =>{
@@ -99,13 +96,21 @@ ngAfterViewInit(): void {
         this.placesService.fetchData((this.endpointApi + '&' + param),this.limit,this.offset).subscribe({
           next: (data : any) => {
             this.place = data;
+            this.totalPlace = 100;
             this.place.features.forEach( positionPlace =>{
-              console.log('coordinate marker:', positionPlace.properties.lon, positionPlace.properties.lat);
-              console.log('marker aggiunto:', positionPlace.properties.name);
-               let marker = new Marker({color: 'green', anchor: 'bottom', draggable: false})
+              // console.log('marker name:', positionPlace.properties.name,'coordinate marker:', positionPlace.properties.lon, positionPlace.properties.lat );
+              this.marker = new Marker({color: 'green', anchor: 'bottom', draggable: false})
                 .setLngLat([positionPlace.properties.lon, positionPlace.properties.lat])
-                .addTo(this.mappa!)
+                .addTo(this.mappa!)  ;
+               this.marker?.getElement().addEventListener('click', ()=> {
+                 this.placeDetails()
+                })
+
             })
+            // this.marker.getElement().addEventListener('click', () =>{
+            //    this.placeDetails()
+            // })
+           
            this.cdr.detectChanges()    
            
             console.log('Dati da getPlaces', this.place)
@@ -117,8 +122,11 @@ ngAfterViewInit(): void {
         })
       }
 
- 
+ placeDetails(){
+  alert('DETTAGLI POSTI PRESI')
+ }
 
 }
 
 
+           
