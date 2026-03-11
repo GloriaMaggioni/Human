@@ -3,7 +3,7 @@ import { NewsService } from '../../services/news.service';
 import { HttpParams } from '@angular/common/http';
 import { Places } from '../../models/places';
 import { isPlatformBrowser } from '@angular/common';
-import { Map, MapStyle, Marker, config } from '@maptiler/sdk';
+import { Map, MapStyle, Marker, config, Popup } from '@maptiler/sdk';
 import '@maptiler/sdk/dist/maptiler-sdk.css'; 
 
 @Component({
@@ -35,8 +35,11 @@ export class SpaziCulturali implements OnInit, AfterViewInit {
 
      place : Places = {features : []}   // model: oggetto con dentro features(array )
      mappa : Map | undefined      // mappa dei posti
+     marker : Marker | undefined;   // marker della mappa
 
-     marker : Marker | undefined;
+  // places detail popup model
+  
+
 ngOnInit(): void {
   this.cdr.detectChanges()
   
@@ -98,18 +101,25 @@ ngAfterViewInit(): void {
             this.place = data;
             this.totalPlace = 100;
             this.place.features.forEach( positionPlace =>{
-              // console.log('marker name:', positionPlace.properties.name,'coordinate marker:', positionPlace.properties.lon, positionPlace.properties.lat );
+              const popup = new Popup()
+                .setHTML(
+                  ` 
+                    <div class=" rounded-md  p-2">
+                       <h2 class=" font-bold"> ${positionPlace.properties.name}</h2>
+                       <p>${positionPlace.properties.address_line2}</p>
+                       <p>${positionPlace.properties.opening_hours}</p>
+                       <p>${positionPlace.properties.contact?.phone}</p>
+                       <p ><a href="${positionPlace.properties.website}" target="_blank">${positionPlace.properties.website}</a></p>
+
+                    </div>
+                     
+                  `
+                )
               this.marker = new Marker({color: 'green', anchor: 'bottom', draggable: false})
                 .setLngLat([positionPlace.properties.lon, positionPlace.properties.lat])
-                .addTo(this.mappa!)  ;
-               this.marker?.getElement().addEventListener('click', ()=> {
-                 this.placeDetails()
-                })
-
+                .setPopup(popup)
+                .addTo(this.mappa!);
             })
-            // this.marker.getElement().addEventListener('click', () =>{
-            //    this.placeDetails()
-            // })
            
            this.cdr.detectChanges()    
            
@@ -122,11 +132,9 @@ ngAfterViewInit(): void {
         })
       }
 
- placeDetails(){
-  alert('DETTAGLI POSTI PRESI')
- }
 
-}
+
 
 
            
+    }
