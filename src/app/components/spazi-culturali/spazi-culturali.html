@@ -1,25 +1,49 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=distance" />
 
-<section class=" spaziCulturali-page min-h-full flex flex-col justify-between  md:p-6 border border-red-700">
+<!-- <section class=" spaziCulturali-page min-h-full flex flex-col justify-between  md:p-6 border border-red-700">
 
-<!-- TODO: DA SISTEMARE IL CAROUSEL -->
-    <div class="carousel w-[50%] m-auto  flex items-center rounded-lg gap-5  bg-cover bg-no-repeat  overflow-hidden relative border border-blue-700" >
-       <img  src="assets/images/FabrizioCaramagna.jpg" alt=""  class="carousel-image w-40 h-44 z-50 ml-[10%] align-middle rounded-lg shrink">
+    <div class="carousel w-[65%] h-fit m-auto mt-3  flex flex-col items-center rounded-lg gap-5  bg-cover bg-no-repeat  overflow-hidden relative border border-blue-700" >
+       <img  src="assets/images/FabrizioCaramagna.jpg" alt=""  
+       class="carousel-image w-full lg:w-40 h-24 object-cover lg:h-44 z-50 lg:ml-[10%] align-middle rounded-lg shrink border border-red-600">
 
-       <div class="carousel-text-container  h-40 text-black z-50">
-           <h3 class="carousel-citazione text-2xl text-balance font-bold  text-center italic">“La cultura non si legge solo sui libri. Si respira nei viaggi, nei profumi, negli incontri, negli esempi”</h3>
-          <div class="carousel-textSecondary flex flex-col mt-5">
-             <h4 class="carousel-nameCharacter  text-base font-medium ">Fabrizio Caramagna (1969 - )</h4>
-             <p class="carousel-professionText text-sm text-gray-600">Scrittore e aforisma</p>
+       <div class="carousel-text-container  lg:h-40 flex flex-col text-black z-50">
+           <h3 class="carousel-citazione  text-lg  font-bold text-center leading-6       lg:text-2xl text-balance lg:font-bold  lg:text-center italic">“La cultura non si legge solo sui libri. Si respira nei viaggi, nei profumi, negli incontri, negli esempi”</h3>
+          <div class="carousel-textSecondary flex flex-col mt-5 ml-2">
+             <h4 class="carousel-nameCharacter font-normal text-xs  lg:text-base lg:font-medium ">Fabrizio Caramagna (1969 - )</h4>
+             <p class="carousel-professionText text-xs pb-2 lg:text-sm text-gray-600">Scrittore e aforisma</p>
           </div>
        </div>
   </div>
 
-    <div class="placeCard-conatiner w-full h-[50vh]  m-auto rounded-md border border-gray-300   relative">   
+    <div class="placeCard-conatiner w-[90%] lg:w-full h-[50vh]  m-auto rounded-md border border-gray-300   relative">   
        <div #map class="map-container w-full h-full  absolute"></div>
     </div>
 
    
-</section>
+</section> -->
 
+
+<section class="spaziCulturali-page min-h-full flex flex-col justify-between md:p-6">
+
+  <div class="carousel w-[90%] sm:w-[80%] md:w-[70%] lg:w-[65%] h-fit m-auto mt-3 flex flex-col md:flex-row items-center rounded-lg gap-5 bg-cover bg-no-repeat overflow-hidden relative">
+    
+    <img src="assets/images/FabrizioCaramagna.jpg" alt=""
+      class="carousel-image w-[70%] sm:w-[70%] mt-2 md:w-36 lg:w-40 h-24 md:h-36 lg:h-44 object-cover md:ml-[5%] lg:ml-[10%] lg:mb-2 align-middle rounded-lg shrink z-50">
+
+    <div class="carousel-text-container flex flex-col text-black z-50 px-3 md:px-0">
+      <h3 class="carousel-citazione text-base sm:text-lg lg:text-2xl text-balance font-bold text-center leading-5 sm:leading-6 italic">
+        "La cultura non si legge solo sui libri. Si respira nei viaggi, nei profumi, negli incontri, negli esempi"
+      </h3>
+      <div class="carousel-textSecondary flex flex-col mt-3 md:mt-5 ml-2">
+        <h4 class="carousel-nameCharacter font-normal text-xs md:text-sm lg:text-base lg:font-medium">Fabrizio Caramagna (1969 - )</h4>
+        <p class="carousel-professionText text-xs pb-2 lg:text-sm text-gray-600">Scrittore e aforisma</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="placeCard-container w-[90%] sm:w-[95%] lg:w-full h-[40vh] sm:h-[45vh] md:h-[50vh] m-auto rounded-md border border-gray-300 relative">
+    <div #map class="map-container w-full h-full absolute"></div>
+  </div>
+
+</section>
 
