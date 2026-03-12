@@ -37,7 +37,6 @@ export class SpaziCulturali implements OnInit, AfterViewInit {
      mappa : Map | undefined      // mappa dei posti
      marker : Marker | undefined;   // marker della mappa
 
-  // places detail popup model
   
 
 ngOnInit(): void {
@@ -53,9 +52,8 @@ ngAfterViewInit(): void {
 
   // calcolo della position dell'user
 
-
   getUserPosition(){
-    if(isPlatformBrowser(this.platformId)) {                        //  controllo: se l'operazione è nel browser  carica tutto, altrimenti no
+    if(isPlatformBrowser(this.platformId)) {                    //  controllo: se l'operazione è nel browser  carica tutto, altrimenti no
          if(typeof navigator !== 'undefined' && navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position : GeolocationPosition) => {
          if(position){
@@ -76,10 +74,8 @@ ngAfterViewInit(): void {
           .set('filter', `circle:${this.longitude},${this.latitude},50000`);
 
           
-            this.mappa.on('load', () =>{
-              console.log('mappa caricata!')
+            this.mappa.on('load', () =>{           
                 this.getPlaces(param);
-
             })
         
         })
@@ -105,9 +101,7 @@ ngAfterViewInit(): void {
                 .addTo(this.mappa!);
             })
            
-           this.cdr.detectChanges()    
-           
-            console.log('Dati da getPlaces', this.place)
+           this.cdr.detectChanges()          
           },
           error: (error : any) => {
             alert('Errore nel calcolo posizione utente', )
@@ -120,8 +114,7 @@ ngAfterViewInit(): void {
  // metodo popup per vedere i dettagli di ogni posto
  placesDetails(positionPlace: any) : Popup{
   const details = new Popup()
-    .setHTML(
-     
+    .setHTML(    
          ` 
            <div class=" rounded-md  p-2">
               <h2 class=" font-bold"> ${positionPlace.properties.name}</h2>
@@ -129,13 +122,11 @@ ngAfterViewInit(): void {
               <p>${positionPlace.properties.opening_hours}</p>
               <p>${positionPlace.properties.contact?.phone}</p>
                <p class="w-full "><a href="${positionPlace.properties.website}" target="_blank">${positionPlace.properties.website}</a></p>
-
-           </div>
-                     
+           </div>               
          `
   )
   return details
  }
 
            
-    }
+ }
