@@ -19,7 +19,8 @@ export class UsersService  {
     'Authorization': 'Bearer ' + this.myToken
    })
 
-   users$ = new BehaviorSubject<User[]>  ([]); //immagazzina i dati degli users
+   users$ = new BehaviorSubject<User[]>([]); //immagazzina i dati degli users
+   totalUser$ = new BehaviorSubject<number>(0);  // totale degli user
    searchUser = new BehaviorSubject<string>(''); // variabile per il testo della ricerca del user
 
    // api call
@@ -29,11 +30,13 @@ export class UsersService  {
 
 
   // metodo per prendere i dati dell'user
-   getUser(pageNumber : number = 1){
-     this.http.get(`https://gorest.co.in/public/v2/users?page=${pageNumber}&per_page=30`).subscribe({
-      next: (response: any) =>{
-        
-        this.users$.next(response)
+   getUser(pageNumber : number = 1 ){
+     this.http.get(`https://gorest.co.in/public/v2/users?page=${pageNumber}&per_page=30`, { observe: 'response'}).subscribe({
+      next: (response: any) =>{ 
+        this.users$.next(response.body);
+        const total = response.headers.get('X-Pagination-Total');
+        this.totalUser$.next(Number(total));
+
       },
       error: (error : any) => console.error('Errore', error)
     })

@@ -41,11 +41,14 @@ ngOnInit(): void {
   this.service.getUser();
   this.service.users$.subscribe(usersList => {
       this.users = usersList;
-      this.totalUser = 10000;
         this.cdr.detectChanges()
         console.log('Dati di userList in ngOnInit:', usersList)
 
   });
+  this.service.totalUser$.subscribe(totalPage =>{
+    this.totalUser = totalPage;
+    this.cdr.detectChanges();
+  })
 
 }
 
