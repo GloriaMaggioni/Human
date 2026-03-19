@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input, signal } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { UsersService } from '../../services/users-service';
 import { User } from '../../models/users';
@@ -27,13 +27,15 @@ export class UtentsPageComponent  implements OnInit{
   private cdr = inject(ChangeDetectorRef)
 
   @Input() limit : number = 30;           // user per page
-   @Input() currentPage : number = 1
-   offset :  number = (this.currentPage - 1) * this.limit;       // punto di inizio
-   @Input() totalUser : number = 0;
+  @Input() currentPage : number = 1
+  @Input() offset :  number = (this.currentPage - 1) * this.limit;       // punto di inizio
+  @Input() totalUser : number = 0;
    
-   displayedColumns : string[] = ['id', 'name', 'email', 'gender']
+  displayedColumns : string[] = ['id', 'name', 'email', 'gender']
 
-      users: User[] = []; // immagazzinati i dati 
+  users: User[] = []; // immagazzinati i dati 
+
+  isCreated = signal(false) 
 
 
 
@@ -51,6 +53,7 @@ ngOnInit(): void {
   })
 
 }
+
 
 // metodo di filtro user
 

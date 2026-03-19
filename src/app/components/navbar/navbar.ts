@@ -72,11 +72,11 @@ createPost() {
   this.userService.addUser( this.newUser).subscribe({
     next: (data: any) =>{
       const currentUser = this.userService.users$.getValue();
-     currentUser.push(data);
+      // currentUser.push(data);
+      currentUser.unshift(data)
       this.userService.users$.next(currentUser)
       console.log('Dati da addUserClick', data)
-      this.userService.getUser();
-      console.log('Dati da addUserClick2:', data)
+      // this.userService.getUser();
 
     } ,
     error: (err: any) => console.error('Errore nel creare il nuovo user', err)    
