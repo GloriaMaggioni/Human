@@ -1,41 +1,42 @@
 <section class="utents-page min-h-screen flex flex-col justify-between p-4 md:p-6  border border-red-600">
 
-    <table mat-table [dataSource]="users" class="mat-elevation-z8">
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let users; let i = index "> {{offset + i +1}} </td>
+  <h2>TABELLA DEGLI UTENTI</h2>
    
-  </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let users"> {{users.name}} </td>
-  </ng-container>
+<table class="table-fixed">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th>Status</th>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="email">
-    <th mat-header-cell *matHeaderCellDef> Email </th>
-    <td mat-cell *matCellDef="let users"> {{users.email}} </td>
-  </ng-container>
+    </tr>
+  </thead>
+  <tbody>
+    @for(user of users$ | async; track $index){
+       <tr>
+      <td>{{(currentPage - 1) + $index + 1}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.gender}}</td>
+      <td>{{user.status}}</td>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="gender">
-    <th mat-header-cell *matHeaderCellDef> Gender </th>
-    <td mat-cell *matCellDef="let users"> {{users.gender}} </td>
-  </ng-container>
+    </tr>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    }
+   
+   
+  </tbody>
 </table>
 
 
 
    
 <div class="paginator-container m-auto mt-4 max-w-[80%] border border-blue-600">
-  <app-paginator [currentPage]="currentPage" [totalNews]="totalUser" [newsPerPage]="limit" (changePage)="onChangePage($event)"></app-paginator>
+  <app-paginator [currentPage]="currentPage" [totalNews]="totalUser" [newsPerPage]="limit"  (changePage)="onChangePage($event)"></app-paginator>
 </div>
 
 </section>

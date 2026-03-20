@@ -4,7 +4,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { UsersService } from '../../services/users-service';
 import { User } from '../../models/users';
 import { Event } from '@angular/router';
-import { FormControl, FormGroup, FormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
 import { Post } from "../post/post";
 import { SingleUtentPageComponent } from "../single-utent-page/single-utent-page.component";
 import { PostService } from '../../services/post-service';
@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [MatMenuModule, FormsModule, Post, SingleUtentPageComponent],
+  imports: [MatMenuModule, FormsModule, Post, SingleUtentPageComponent, ReactiveFormsModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
@@ -58,8 +58,7 @@ createPost() {
      this.isCreate.update(open => !open);
       if(this.isOpen() == true){
      this.isCreate.set(false);
-    
-     this.addUserClick()
+    this.addUser()
 
   }
    this.cleanForm();     
@@ -67,21 +66,7 @@ createPost() {
 
  }
 
-// aggiungere i dati del nuovo user
- addUserClick(){
-  this.userService.addUser( this.newUser).subscribe({
-    next: (data: any) =>{
-      const currentUser = this.userService.users$.getValue();
-      // currentUser.push(data);
-      currentUser.unshift(data)
-      this.userService.users$.next(currentUser)
-      console.log('Dati da addUserClick', data)
-      // this.userService.getUser();
 
-    } ,
-    error: (err: any) => console.error('Errore nel creare il nuovo user', err)    
-  })
- }
 
  // resetta il form per creare il nuovo user
 cleanForm(){
@@ -94,11 +79,30 @@ cleanForm(){
 
 }
 
-// metodo che prende il nuovo testo digitato nella search bar e aggiorna i dati
-findUser(newText: string){
- this.userService.searchUser.next(newText)
+private fb = inject(FormBuilder)
 
-}
+newUserForm : FormGroup = this.fb.group({
+  name: ['', Validators.required],
+  gender: ['',Validators.required],
+  email: ['', [Validators.required, Validators.email]],
+  status: ['active', Validators.required]
+})
+
+ addUser(){
+   if(this.newUserForm.valid){
+     this.userService.addUser(this.newUserForm.value as User).subscribe({
+       next: (response: any) =>{
+         this.userService.getUser()
+         this.newUserForm.reset()
+         console.log('Dati del nuovo user', response)
+      },
+      error: (error : any) =>{
+        console.error('Errore nella creazione del nuovo utente:', error);
+        alert( error)
+      }
+     })
+  }
+ }
 
 
 
