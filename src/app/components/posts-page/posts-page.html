@@ -7,8 +7,9 @@
                <h5 class="mb-3 text-2xl font-semibold tracking-tight text-heading leading-8">{{post.title}}</h5>
                <p class="text-body mb-6">{{post.body}}</p>
                 <p class="text-body mb-6">Commento:
-                   @for(comment of comment$ | async; track $index){
-                        <h5>Titolo commento: {{comment.name}}</h5>
+                   @for(post of post.comment ; track post.id){
+                        <h5>Titolo commento: {{post.name}}</h5>
+                        <p>{{post.body}}</p>
 
                     } 
                 </p>

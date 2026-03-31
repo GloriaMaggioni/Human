@@ -131,9 +131,9 @@ findUser( ){
 
 // TODO: NON FUNZIONA ,BISOGNA CAPIRE IL PERCHè
 findPostByUserId(){
-  if(this.testoDigitato  === ''){ 
+  if(!this.testoDigitato || this.testoDigitato.trim() === ''){ 
     return  
-  }else {
+  }
     const utent = this.userService.users$.getValue().find(user => user.name == this.testoDigitato);
  
  if(utent  && utent.id){
@@ -144,7 +144,7 @@ findPostByUserId(){
   // this.snackBar.openSnackBar('Errore nella ricerca dei post:', )
   console.error('Errore ricerca post: Utente non trovato o ID mancante per', this.testoDigitato);
 
- } 
+ 
   }
  
 } 

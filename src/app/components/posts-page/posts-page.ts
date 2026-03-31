@@ -25,7 +25,7 @@ export class PostsPage implements OnInit {
 
  posts$ = this.postService.post$;
  totalPost : number = 0;
- comment$ = this.postService.comment$;
+ comment: CommentModel[] = []
 
   ngOnInit(): void {
     this.postService.getPost()
@@ -33,7 +33,10 @@ export class PostsPage implements OnInit {
       this.totalPost = totalPage;
       this.cdr.detectChanges()
     })
+   
+    // TODO: caapire cosa c'è di sbagliato: i dati dei commenti non si vedono anche se html li accetta
     this.postService.getComment()
+    this.cdr.detectChanges()
     
   }
 
