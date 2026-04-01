@@ -25,7 +25,7 @@ export class PostsPage implements OnInit {
 
  posts$ = this.postService.post$;
  totalPost : number = 0;
- comment: CommentModel[] = []
+ comment$ = this.postService.comment$;
 
   ngOnInit(): void {
     this.postService.getPost()

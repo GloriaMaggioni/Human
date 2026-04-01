@@ -125,27 +125,22 @@ createPost() {
 
  // metodo che prende il nuovo testo digitato nella search bar e aggiorna i dati
 findUser( ){
+  console.log('findUser chiamato')
  this.userService.getUser(1, this.testoDigitato)
 }
 
 
 // TODO: NON FUNZIONA ,BISOGNA CAPIRE IL PERCHè
 findPostByUserId(){
-  if(!this.testoDigitato || this.testoDigitato.trim() === ''){ 
-    return  
+  if(this.testoDigitato != ''){
+     this.postService.getPostsByUserId(Number(this.testoDigitato))
+
+  } else {
+    this.postService.getPost()
   }
-    const utent = this.userService.users$.getValue().find(user => user.name == this.testoDigitato);
- 
- if(utent  && utent.id){
-  this.postService.getPostsByUserId(utent.id);
-  console.log('post da findPostNyUserId nella navbar:', utent.name)
- }else{
- console.warn('Attenzione: Nessun utente trovato o ID non disponibile per la ricerca dei post.');
-  // this.snackBar.openSnackBar('Errore nella ricerca dei post:', )
-  console.error('Errore ricerca post: Utente non trovato o ID mancante per', this.testoDigitato);
 
  
-  }
+
  
 } 
 

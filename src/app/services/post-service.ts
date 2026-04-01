@@ -77,7 +77,7 @@ export class PostService {
     return this.http.get(`${this.commentUrl}`, {headers:this.headers, observe: 'response'}).subscribe({
       next: (response: any) =>{
         this.comment$.next(response.body);
-        console.log('dati dei commenti:', this.comment$)
+        console.log('dati dei commenti:', response)
       }
     })
   }
