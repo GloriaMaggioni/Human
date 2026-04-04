@@ -39,14 +39,6 @@ export class PostService {
         this.post$.next(response.body)
         const totalPost = response.headers.get('X-Pagination-Total')
         this.totalPost$.next(Number(totalPost))
-        console.log('post tot:', response)
-
-        // response.body.forEach( (post :PostModel) => {
-        //   this.getComment(post.id).subscribe((comments : any) =>{
-        //     post.comment = comments;
-        //     console.log('total comment:', post.comment)
-        //   })  
-        // })
       },
       error: () => this.snackBar.openSnackBar('Errore nella ricezione dei post:')
     })
@@ -79,11 +71,14 @@ export class PostService {
     })
   }
 
-  // todo: da sistemare qui o nel componente per prendere uno solo comment per post
 
   getComment(postId : PostModel['id']){
     return this.http.get(`${this.postUrl}/${postId}/comments`, {headers:this.headers, observe: 'response'}).pipe(
       map((response: any) => response.body)
     )
+  }
+
+  createComment(comment : CommentModel, postId : PostModel['id']){
+    return this.http.post((`${this.postUrl}/${postId}/comments`), comment, {headers: this.headers})
   }
 }
