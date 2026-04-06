@@ -46,16 +46,16 @@
                           </a> 
                  }
         </div>
-        <div class="logout-container w-full mt-[10%] text-red-600 italic">
+        <button class="logout-container w-full mt-[10%] text-red-600 italic">
                      @for(item of logout; track logout){
-                         <a [routerLink]="item.link" routerLinkActive="active" class="inline-flex items-center justify-center text-base ">
+                         <a [routerLink]="item.link" routerLinkActive="active" class="inline-flex items-center justify-center text-base border border-blue-600 hover:cursor-pointer" (click)="logoutClick()">
                            <img [src]="item.icon" alt="" class="w-[30%]">
                          @if(isOpen()){                        
                             <span class="" >{{item.label}}</span>
                          }
                         </a>
                     }
-         </div> 
+                  </button> 
       </div>
 </div>
 

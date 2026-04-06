@@ -27,4 +27,10 @@ login(){
       return localStorage.setItem('token', this.token)
   }
 }
+
+logout(){
+  if(isPlatformBrowser(this.platformId)){
+    return localStorage.removeItem('token')
+  }
+}
 }

@@ -1,11 +1,12 @@
-import { Component, ElementRef, signal, ViewChild, afterNextRender} from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterModule } from "@angular/router";
+import { Component, ElementRef, signal, ViewChild, afterNextRender, inject} from '@angular/core';
+import { Router, RouterLink, RouterLinkActive, RouterModule } from "@angular/router";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { NgClass, NgComponentOutlet } from '@angular/common';
 import {MatListModule} from '@angular/material/list';
 import { FormsModule } from "@angular/forms";
 import {MatIconModule} from '@angular/material/icon';
+import { AuthService } from '../../auth/auth-service';
 
 
 @Component({
@@ -15,6 +16,9 @@ import {MatIconModule} from '@angular/material/icon';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+  private authService= inject(AuthService);
+    private router = inject(Router)
+
 
 
   isOpen = signal(true);
@@ -77,6 +81,12 @@ export class SidebarComponent {
 
   toggle(){
     this.isOpen.update(open => !open)
+  }
+
+
+  logoutClick(){
+    this.authService.logout();
+    this.router.navigate(['/login'])
   }
   
 }
