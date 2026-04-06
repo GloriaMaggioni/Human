@@ -1,7 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterModule, Router,  } from "@angular/router";
-import{FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms"
-import { error } from 'node:console';
+import{FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators} from "@angular/forms"
+import { AuthService } from '../../auth/auth-service';
+
 @Component({
   selector: 'app-login',
   imports: [
@@ -13,31 +14,15 @@ import { error } from 'node:console';
   styleUrl: './login.css'
 })
 export class Login {
+  private authService = inject(AuthService)
+  private router = inject(Router)
 
-  //private route = Inject(ActivatedRoute);
-//   form  = new FormGroup({
-//     email: new FormControl ('', Validators.required),
-//     password: new FormControl('', [Validators.required, Validators.minLength(8)])
-
-//   })
-//  private router = Inject (Router);
-
- 
-//   goToDashboard() : void{    
-//     if(this.form.valid){
-//           this.router.navigate[('/dashboard')]
-//           console.log(this.form.value)
-
-//     }else if(this.form.invalid){                 
-//       alert('Compilare tutti i campi obbligatori') 
-//     }
-//   }
-
-
-//   goToRegisterPage(){
-//     this.router.navigate[('/register/register.html')];
-//     console.log('navigazione a register richiesta')
-  
-//   }
+onSubmit(loginForm : NgForm){
+  const email = loginForm.value.email;
+  const password = loginForm.value.password
+   this.authService.login()
+   this.router.navigate(['/homepage'])
+  console.log(loginForm)
+}
 
 }

@@ -27,16 +27,16 @@
           <div class="login-form flex min-h-full flex-col justify-center px-6 py-12 lg:px-8" >
             <!-- START FORM  -->
                    <div class="flex w-full  justify-center mt-10">
-                    <form action="#" class=" w-full space-y-4">
+                    <form action="#" class=" w-full space-y-4" #loginForm="ngForm"  (ngSubmit)="onSubmit(loginForm)">
                    
                         <div >
                           <label for="email" class="block  text-sm/6">Email*</label>
-                         <input type="email" name="email" required autocomplete="email"  class=" block w-full h-9 rounded-md px-3 py-3  bg-white outline-1 -outlone-offset-1 outline-gray-300 text-base focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500" >
+                         <input type="email" name="email" required autocomplete="email"  class=" block w-full h-9 rounded-md px-3 py-3  bg-white outline-1 -outlone-offset-1 outline-gray-300 text-base focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500" ngModel>
                        </div>
                   
                          <div >
                           <label for="password" class="block  text-sm/6">Password*</label>
-                         <input type="password" name="password" required autocomplete="current-password" class="block w-full h-9 rounded-md px-3 py-3   bg-white outline-1 -outlone-offset-1 outline-gray-300 text-base focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500" >
+                         <input type="password" name="password" required autocomplete="current-password" class="block w-full h-9 rounded-md px-3 py-3   bg-white outline-1 -outlone-offset-1 outline-gray-300 text-base focus:outline-2 focus:-outline-offset-2 focus:outline-orange-500" ngModel>
                        </div>
                      
                         <div class="space-y-3">

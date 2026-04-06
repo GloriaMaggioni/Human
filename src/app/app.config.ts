@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes), 
     //  provideClientHydration(withEventReplay()),   // vedere se bisogna lasciarlo poi attivo oppure no
-    provideHttpClient(withFetch()),
+    provideHttpClient(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore( () => getFirestore())
   ]

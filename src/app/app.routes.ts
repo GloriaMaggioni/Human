@@ -12,8 +12,9 @@ import { SettingsPageComponent } from './components/settings-page/settings-page.
 import { SpaziCulturali } from './components/spazi-culturali/spazi-culturali';
 import { SingleUtentPageComponent } from './components/single-utent-page/single-utent-page.component';
 import { PostsPage } from './components/posts-page/posts-page';
+import { authGuard } from './auth/auth-guard';
 export const routes: Routes = [    
-    {path: '', component: Dashboard ,children: [
+    {path: '', component: Dashboard ,canActivate: [authGuard], children: [
         {path: '', component: HomepageComponent},
         {path: 'events', component: EventsPage},
         {path: 'history',  loadComponent: () => import('./components/history-page/history-page.component').then(m => m.HistoryPageComponent)},

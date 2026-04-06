@@ -118,16 +118,13 @@ onSubmit(){
              post.comment = totalComments;
              this.cdr.detectChanges()
           }
-
         })
          this.snackBar.openSnackBar('Eliminato  commento con successo!');
         this.cdr.detectChanges();
       },
-      error: (error : any) =>{ this.snackBar.openSnackBar('Errore nella eliminazione del commento:', error); 
-        console.error('Errore nella eliminazione:', error)
-      }
+      error: (error : any) => this.snackBar.openSnackBar('Errore nella eliminazione del commento:', error)
+      
     })
-    // console.log('Commento eliminato', id)
   }
 
 
