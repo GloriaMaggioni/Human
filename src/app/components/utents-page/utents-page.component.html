@@ -27,7 +27,7 @@
                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap text-amber-600">
                    {{offset + $index + 1}}
                 </th>
-                <td class="px-6 py-4 hover:cursor-pointer" [routerLink]="['/utentPage']">
+                <td class="px-6 py-4 hover:cursor-pointer" [routerLink]="['/utentPage', user.id]">
                     {{user.name}}
                  
                 </td>

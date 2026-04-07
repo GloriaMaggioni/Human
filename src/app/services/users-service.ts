@@ -67,7 +67,10 @@ export class UsersService  {
      return this.http.delete(`${this.apiUrl}/${idUser}`, {headers: this.headers})
    }
 
- 
+ // metodo per prendere i dettagli di un utente
+ getUserDetails(idUser: number ){
+  return this.http.get(`${this.apiUrl}/${idUser}`, {headers: this.headers})
+ }
 
 
 }
