@@ -29,7 +29,8 @@ export class PostsPage implements OnInit {
    isOpen = signal(false);
    isCreate = signal(false);
 
-   private postId: number | undefined=  275614; // TODO: DA SISTEMARE DINAMICAMENTE
+   private postId: number | undefined =  undefined;
+
 
   newCommentForm : FormGroup = this.fb.group({
      name: ['', Validators.required],

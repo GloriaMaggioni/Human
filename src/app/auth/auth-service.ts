@@ -9,7 +9,8 @@ import { isPlatformBrowser } from '@angular/common';
 
 export class AuthService {
 private token = environment.GOREST_APIKEY;
-private platformId = inject(PLATFORM_ID)
+private platformId = inject(PLATFORM_ID);
+
 
  // controlla se token è presente
 isLoggedIn(): boolean {
@@ -20,11 +21,19 @@ isLoggedIn(): boolean {
   return false
 }
 
+getUserId (): number{
+  if(isPlatformBrowser(this.platformId)){
+    return Number(localStorage.getItem('userId') )
+  }
+  return 0
+}
+
 
 // salvare il token nel localstorage
 login(){
   if(isPlatformBrowser(this.platformId)){
-      return localStorage.setItem('token', this.token)
+      return localStorage.setItem('token', this.token);
+      localStorage.setItem('userId', environment.USER_ID.toString())
   }
 }
 
@@ -33,4 +42,7 @@ logout(){
     return localStorage.removeItem('token')
   }
 }
+
+
+
 }

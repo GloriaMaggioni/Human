@@ -4,6 +4,8 @@ import { PostService } from '../../services/post-service';
 import {    FormsModule, NgForm } from '@angular/forms';
 import { EventEmitter } from 'node:stream';
 import { SnackBar } from '../../services/snack-bar';
+import { environment } from '../../../environments/environment.development';
+import { AuthService } from '../../auth/auth-service';
 
 @Component({
   selector: 'app-post',
@@ -15,8 +17,9 @@ export class Post  {
   private service = inject(PostService);
   private cdr = inject(ChangeDetectorRef);
   private snackBar = inject(SnackBar);
+  private authService = inject(AuthService);
 
-  private userId : number = 8414033;    // TODO: COLLEGARE L'USERID ALLA AUTENTICAZIONE QUANDO VERRA' CREATA
+  private userId : number = this.authService.getUserId();   
 
    @ViewChild('newPostForm') postForm! : NgForm
     postCreated = output<void>();       // event emitter
@@ -24,7 +27,7 @@ export class Post  {
 
 
   newPost : PostModel = {       // inizializza i dati del post 
-    user_id: 23,
+    user_id: this.userId,
     title: '',
     body: '',
     comment : []
@@ -34,7 +37,7 @@ export class Post  {
  
    createNewPost(){
     if(this.postForm.valid){
-        this.service.createPost(this.newPost, this.userId). subscribe({         // userId provvisorio ---> collegarla all'autenticazione
+        this.service.createPost(this.newPost, this.userId). subscribe({         
      next : (data: any) =>{
       this.newPost = data;
       this.postCreated.emit();

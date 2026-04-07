@@ -39,10 +39,10 @@ searchUserId: number = 0;
 
 
   // da sistemare per renderlo funzionante e dinamico
-userImgPanel = [  // TODO: vedere che cosa è e se serve
+userImgPanel = [  
   {image : 'Immagine'},
-  { nome: 'Nome'},
-  {cognome: 'Cognome'},
+   { nome: 'Nome'},
+   {cognome: 'Cognome'},
   { profilo: '/components/single-utent-page.html'}
 ]
 
@@ -107,7 +107,8 @@ createPost() {
    if(this.newUserForm.valid){
      this.userService.addUser(this.newUserForm.value as User).subscribe({
        next: (response: any) =>{
-         this.userService.getUser()
+         this.userService.getUser();
+            console.log(response)
          this.newUserForm.reset()
          this.snackBar.openSnackBar('Nuovo utente creato!')
       },
