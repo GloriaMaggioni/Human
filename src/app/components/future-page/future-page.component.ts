@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
-import { carousel } from '../../models/carousel.model';
 import { CarouselComponent } from '../carousel/carousel.component';
 import {  RouterOutlet } from "@angular/router";
 import { FirestoreService } from '../../services/firestore-service';
@@ -11,7 +10,7 @@ import { Paginator } from '../paginator/paginator';
 @Component({
   selector: 'app-future-page',
   standalone:true,
-  imports: [CarouselComponent, RouterOutlet, Paginator],
+  imports: [CarouselComponent, Paginator, RouterOutlet],
   templateUrl: './future-page.component.html',
   styleUrl: './future-page.component.css'
 })

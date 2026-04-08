@@ -7,7 +7,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { NgOptimizedImage } from '@angular/common';
 //Inizializzazione del realtime database di firebase
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import {provideFirestore , getFirestore  } from '@angular/fire/firestore/lite';
+import {provideFirestore , getFirestore  } from '@angular/fire/firestore';
 
 // Dati configurazione database
 const firebaseConfig = {
