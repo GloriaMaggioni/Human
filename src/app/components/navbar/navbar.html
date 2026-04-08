@@ -2,12 +2,12 @@
  <div class="navbar-container w-full h-full flex items-center justify-between px-8">
     <!-- SEARCH BAR -->
      <div class="search-bar flex ">
-        <input type="search"  placeholder="Search" class="search-input  h-full  border border-solid border-gray-400 rounded-md placeholder-gray-400 " [(ngModel)]="testoDigitato" (input)="findUser(testoDigitato)">
-        <button class="search-btn  rounded-md bg-amber-600">
-             <img src="assets/images/search-icon2.svg" alt="" class="size-4 search-icon ">
+        <input type="search"  placeholder="Search" class="search-input  h-full  border border-solid border-gray-400 rounded-md placeholder-gray-400 " [(ngModel)]="testoDigitato" (input)="findUser() " (keyup.enter)="findPostByUserId()">
+        <button type="button" class="search-btn  rounded-md bg-amber-600">
+             <img src="assets/images/search-icon2.svg" alt="" class="size-4 search-icon " >
         </button>
       </div>
-      <!-- CONTAINER DEI TRE BOTTONI -->
+      <!-- CONTAINER DEI  BOTTONI -->
       <div class="threeBtn-container w-80 h-full flex justify-evenly items-center ">
         <!-- NEW BUTTON -->
         <button mat-button  [matMenuTriggerFor]="newBtnMenu" class="new-btn flex w-22 items-center text-lg  border-solid border-amber-600 bg-amber-600 rounded-2xl  text-white">
@@ -17,17 +17,23 @@
                 <button class="option1" mat-menu-item  (click)="createPost()">Post</button>
                 <button mat-menu-item (click)="openNewUserForm()">Utente</button>
         </mat-menu>
-        @if(isOpen){
-           <div class="post-form" >
-           <button class="closedBtn" (click)="createPost()">Chiudi</button>
-           <p>QUI PUOI CREARE IL NUOVO POST
-            <!-- <app-post></app-post> -->
+        @if(isOpen()){
+           <div class="post-form p-6 text-md fixed top-[50%] left-[50%] w-[35%]  sm:h-[50%]  transfom translate-x-[-50%] translate-y-[-50%]   z-100 border border-gray-400 bg-neutral-100 text-black rounded-md" >
+           <button class="closedBtn hover:cursor-pointer hover:text-red-700" (click)="createPost()">
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+               </svg>
+           </button>
+           <p>
+            <app-post (postCreated)="createPost()"></app-post>
            </p>
         </div>
         }
       
+        <!-- FORM PER CREARE IL NUOVO USER -->
         @if(isCreate()){
-           <div class="newUser-form p-6 text-md fixed top-[50%] left-[50%] w-[40%] sm:h-[40%]  transfom translate-x-[-50%] translate-y-[-50%]   z-100 border border-gray-400 bg-neutral-100 text-black rounded-md" >
+           <div class="newUser-form p-6 text-md fixed top-[50%] left-[50%] w-[40%]  sm:h-[40%]  transfom translate-x-[-50%] translate-y-[-50%]   z-100 border border-gray-400 bg-neutral-100 text-black rounded-md" >
+         
              <button class="closedBtn hover:cursor-pointer hover:text-red-700" (click)="openNewUserForm()">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -35,59 +41,63 @@
 
              </button>
 
-           <form class="max-w-md mx-auto" >
-              <!-- FULL NAME -->
+            <form class="max-w-md mx-auto" [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
              <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" [(ngModel)]="newUser.name" name="floating_name"  class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required /> 
-                    <label for="floating_first_name" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"> Name</label>
+                    <input type="text"name="name"  class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"  formControlName="name"/> 
+                    <label for="name" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto invalid:border-red-700 invalid:text-red-700"> Name</label>
+                 @if(newUserForm.get('name')?.invalid && newUserForm.get('name')?.touched){
+                    <p class="text-red-600  mt-1">Inserire un nome valido</p>
+                 }
                 </div>
-                <!-- GENDER -->
                   <div class=" max-w-sm mx-auto">
                      <label for="gender" class="block mb-1.5 text-sm font-medium text-heading">Gender</label>
-                     <select name="genderSelect" id="gender" [(ngModel)]="newUser.gender" class="block w-full px-2 py-1 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body">
+                     <select name="genderSelect" id="gender"  class="block w-full px-2 py-1 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body invalid:border-red-700 invalid:text-red-700" formControlName="gender">
                         <option value="" selected>Choose an option</option>
                         <option value="Female">Female</option>
                         <option value="Male">Male</option>
                      </select>
+                      @if(newUserForm.get('gender')?.invalid && newUserForm.get('gender')?.touched){
+                    <p class="text-red-600  mt-1">Inserire un valore valido</p>
+                    }
                   </div>
-                <!-- STATUS -->
                  <div class="relative z-0 w-full mb-5 group">
-                    <input type="hidden" [(ngModel)]="newUser.status" name="floating_status"  class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required /> 
+                    <input type="hidden"  name="floating_status"  class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" /> 
                 </div>
                
                
              </div>
-             <!-- EMAIL -->
              <div class="relative z-0 w-full mb-5 group">
-                   <input type="email" [(ngModel)]="newUser.email" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+                   <input type="email"  name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer invalid:border-red-700 invalid:text-red-700" formControlName="email" />
                    <label for="floating_email" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email address</label>
+                    @if(newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched){
+                    <p class="text-red-600  mt-1">Inserire una email valida</p>
+                 }
              </div>
-             <button type="submit" class="text-white bg-amber-600 box-border border border-amber-600 hover:bg-amber-500 hover:border-amber-500 hover:text-white hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none" (click)="addUserClick()">Create</button>
+             <button type="submit" class="text-white bg-amber-600 box-border border border-amber-600 hover:bg-amber-500 hover:border-amber-500 hover:text-white hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none"  >Create</button>
              <button type="reset" class="text-red-600 bg-transparent ml-4 hover:bg-gray-200 hover:text-black hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none" (click)="cleanForm()">Cancel</button>
-         
-          </form>
+          @if(newUserForm.valid && newUserForm.get('submit')?.touched){
+            <p class="text-green-700 font bold mt-2">Nuovo utente creato</p>
+          }
+          </form> 
 
         </div>
 
         }
        
-        <!-- FAVORITE BUTTON -->
-        <span class="favorite-icon">
-            <img class="h-8" src="assets/images/favorite-icon.svg" alt="" >
-        </span>
         <!-- USER ICON BUTTON -->
          <span class="userIcon-btn  w-fit h-fit" [matMenuTriggerFor]="userIconMenu">
+            <!-- TODO: trasformare la img nelle iniziali dell'utente in base alla autenticazione -->
             <img src="assets/images/Aristotele.jpg" alt="" class="size-14 rounded-full ring-1 ring-gray-600 outline -outline-offset-1 outline-white/10" />
          </span>
           <mat-menu #userIconMenu="matMenu">
                 <span mat-menu-item class="nominativo-item">
+                  <!-- TODO:  trasformare la img nelle iniziali dell'utente in base alla autenticazione-->
                     <img src="assets/images/Aristotele.jpg" class="size-14 rounded-full ring-1 ring-gray-100" alt="">
-                   <p> Nome e Cognome </p>
+                 
                 </span>
                 
-                <button mat-menu-item>Settings</button>
-                <button mat-menu-item>Profilo</button>
+                <button mat-menu-item [routerLink]="['/settings']">Pagina Utente</button>
             </mat-menu>
          
       </div>

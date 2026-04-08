@@ -1,0 +1,76 @@
+<section class="post-page min-h-screen    md:p-2 border border-black/5 roundend-md">
+
+    <div class="postList-container w-full   flex align-middle justify-evenly flex-wrap relative ">
+        @for(post of posts$ | async; track $index){
+           <div class="bg-neutral-primary-soft block w-[40%]  sm:w-[45%] md:w-[40%] lg:w-[40%] p-4 m-2 border border-black/5 rounded-md shadow-xs">
+            <p>{{post.user_id}}</p>
+               <h5 class="mb-3 text-2xl font-semibold tracking-tight text-heading leading-8">{{post.title}}</h5>
+               <p class="text-body mb-6">{{post.body}}</p>
+                <p class="text-body mb-6">Comments:
+                   @for(comment of post.comment; track comment.id){
+                    <div class=" p-2 mt-1 rounded-md border border-black/5">
+                      <div class="comment-content flex align-middle justify-between">
+                         <h5 class="font-bold"> {{comment.name}} </h5>
+                            <button class=" font-small text-fg-brand hover:text-white border border-black/5 hover:bg-red-600  hover:border-red-600 hover:cursor-pointer p-1 rounded-md" (click)="deleteComment(comment.id, post.id)">
+                               <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-48v-72h192v-48h192v48h192v72h-48v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM384-288h72v-336h-72v336Zm120 0h72v-336h-72v336ZM312-696v480-480Z"/></svg>
+                            </button>   
+                      </div>
+                       <p>{{comment.body}}</p>
+                    </div>          
+
+                    } 
+                </p>
+
+                <button href="" class="font-medium text-fg-brand hover:text-white border border-black/5 hover:bg-red-600  hover:border-red-600 hover:cursor-pointer p-2 rounded-md" (click)="deletePost(post.id)">Delete</button>
+                <button href="" class="font-medium text-fg-brand ml-4 hover:text-white border border-black/5 hover:bg-amber-600  hover:border-amber-600 hover:cursor-pointer p-2 rounded-md" (click)="openCommentModal(post.id)">New comment</button>
+
+           </div>
+        }
+
+        @if(isCreate()){
+            <div class="newComment-form p-6 text-md fixed top-[50%] left-[50%] w-[40%]  sm:h-[40%]  transfom translate-x-[-50%] translate-y-[-50%]   z-100 border border-gray-400 bg-neutral-100 text-black rounded-md">
+                
+             <button class="closedBtn hover:cursor-pointer hover:text-red-700" (click)="openCommentModal()">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+               </svg>
+
+             </button>
+
+             <form class="max-w-md mx-auto" [formGroup]="newCommentForm" (ngSubmit)="onSubmit()">
+                <div class="grid md:grid-cols-2 md:gap-6 mb-4">
+                 <div class=" title-container relative z-0 w-full mb-5 group">
+                      <input type="text"name="name"  class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"  formControlName="name"/> 
+                      <label for="name" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto invalid:border-red-700 invalid:text-red-700"> Name</label>
+                  @if(newCommentForm.get('name')?.invalid && newCommentForm.get('name')?.touched){
+                      <p class="text-red-600  mt-1">Inserire un titolo valido</p>
+                  }
+                </div>
+                <div class="email-container relative z-0 w-full mb-5 group">
+                   <input type="email"  name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer invalid:border-red-700 invalid:text-red-700" formControlName="email" />
+                   <label for="floating_email" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email address</label>
+                    @if(newCommentForm.get('email')?.invalid && newCommentForm.get('email')?.touched){
+                    <p class="text-red-600  mt-1">Inserire una email valida</p>
+                 }
+               </div>
+            </div>
+              <div class="commentBody-container relative z-0 w-full h-[40%] mb-5 group rounded-md border border-black/5">
+                 <textarea name="comment-body" class="w-full" formControlName="body" placeholder="Inserire il testo del commento"></textarea>
+               </div>
+         
+                <button type="submit" class="text-white bg-amber-600 box-border border border-amber-600 hover:bg-amber-500 hover:border-amber-500 hover:text-white hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none"  >Create</button>
+             <button type="reset" class="text-red-600 bg-transparent ml-4 hover:bg-gray-200 hover:text-black hover:cursor-pointer focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-md text-sm px-4 py-2.5 focus:outline-none" (click)="newCommentForm.reset()">Cancel</button>
+             </form>
+            </div>
+        }
+       
+          
+
+    </div>
+    <div class="paginator-container m-auto w-fit mt-2 ">
+               <app-paginator [currentPage]="currentPage" [newsPerPage]="limit" [totalNews]="totalPost" (changePage)="changePage($event)"></app-paginator>
+    </div>
+
+   
+   
+</section>

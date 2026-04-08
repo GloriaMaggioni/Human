@@ -1,5 +1,30 @@
 
 
+.carousel{
+     background-image: url('/assets/images/AldaMerini.jpg') ;
+    background-size: cover;
+    background-repeat:no-repeat;
+   background-position: 25% 45%; 
+  
+}
+.carousel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(217, 217, 217, 0.6); 
+  background-size: cover;
+}
+
+.carousel-text-container{
+    h3{
+        font-family: "Inika", serif;
+    } 
+}
+
+
 
 
 .selected{

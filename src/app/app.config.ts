@@ -7,7 +7,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { NgOptimizedImage } from '@angular/common';
 //Inizializzazione del realtime database di firebase
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import {provideFirestore , getFirestore  } from '@angular/fire/firestore/lite';
+import {provideFirestore , getFirestore  } from '@angular/fire/firestore';
 
 // Dati configurazione database
 const firebaseConfig = {
@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes), 
     //  provideClientHydration(withEventReplay()),   // vedere se bisogna lasciarlo poi attivo oppure no
-    provideHttpClient(withFetch()),
+    provideHttpClient(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore( () => getFirestore())
   ]

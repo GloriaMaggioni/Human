@@ -3,76 +3,64 @@ import { ChangeDetectorRef, Component, ElementRef,inject,signal } from '@angular
 import {MatMenuModule} from '@angular/material/menu';
 import { UsersService } from '../../services/users-service';
 import { User } from '../../models/users';
-import { Event } from '@angular/router';
-import { FormControl, FormGroup, FormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
+import { Post } from "../post/post";
+import { SingleUtentPageComponent } from "../single-utent-page/single-utent-page.component";
+import { PostService } from '../../services/post-service';
+import { PostModel } from '../../models/post-model';
+import { CommonModule } from '@angular/common';
+import { SnackBar } from '../../services/snack-bar';
+import { RouterLink } from "@angular/router";
+import { error } from 'node:console';
 
 
 
 
 @Component({
   selector: 'app-navbar',
-  imports: [MatMenuModule, FormsModule],
+  imports: [MatMenuModule, FormsModule, Post, ReactiveFormsModule, RouterLink],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
 export class Navbar {
 
-  private userService = inject(UsersService)
+  private userService = inject(UsersService);
+  private postService = inject(PostService);
+   private fb = inject(FormBuilder);
+  private snackBar = inject(SnackBar);
+
+
+
+   
+isOpen = signal(false);
+isCreate = signal(false);
+testoDigitato: string = ''; // prende il testo digitato nella search bar 
+searchUserId: number = 0;
 
 
   // da sistemare per renderlo funzionante e dinamico
-userImgPanel = [  // TODO: vedere che cosa è e se serve
+userImgPanel = [  
   {image : 'Immagine'},
-  { nome: 'Nome'},
-  {cognome: 'Cognome'},
+   { nome: 'Nome'},
+   {cognome: 'Cognome'},
   { profilo: '/components/single-utent-page.html'}
 ]
-  newUser : User = {   // inizializzato i parametri del model: campi obbligatori
+
+  newUser : User = {   // inizializzato i parametri del model user: campi obbligatori
     name: '',
     email: '',
     gender: '',
     status: 'active'      
-  }
-   
+  } ;
 
-isOpen = false;
-isCreate = signal(false);
-testoDigitato: string = ''; // prende il testo digitato nella search bar (newText)
 
-createPost() {
-  this.isOpen = !this.isOpen;
-  if(this.isCreate() == true){
-    this.isOpen =  false;
-  }
-}
- 
-// apre/chiude il modal per creare il nuovo user
- openNewUserForm(){
-     this.isCreate.update(open => !open);
-      if(this.isOpen == true){
-     this.isCreate.set(false);
- 
-     this.addUserClick()
 
-  }
-   this.cleanForm()
-    
-
- }
-
-// add i dati del nuovo user
- addUserClick(){
-  this.userService.addUser( this.newUser).subscribe({
-    next: (data: any) =>{
-      // this.userService.getUser();
-      const currentUser = this.userService.users$.getValue();
-     currentUser.push(data);
-      this.userService.users$.next(currentUser)
-      console.log('Dati da addUserClick', data)
-    } ,
-    error: (err: any) => console.error('Errore nel creare il nuovo user', err)    
-  })
- }
+newUserForm : FormGroup = this.fb.group({
+  name: ['', Validators.required],
+  gender: ['',Validators.required],
+  email: ['', [Validators.required, Validators.email]],
+  status: ['active', Validators.required]
+});
 
  // resetta il form per creare il nuovo user
 cleanForm(){
@@ -81,15 +69,76 @@ cleanForm(){
     email: '',
     gender: '',
     status: 'active'
+  };
+
+}
+   
+
+
+createPost() {
+  this.isOpen.update(open => !open)
+  if(this.isCreate() == true){
+    this.isOpen.set(false)
   }
+}
  
+// apre/chiude il modal per creare il nuovo user
+ openNewUserForm(){
+     this.isCreate.update(open => !open);
+      if(this.isOpen() == true){
+     this.isCreate.set(false);
+  }
+   this.cleanForm();     
+   this.isOpen.set(false)
+    
+
+ }
+
+
+ onSubmit(){
+  this.addUser()
+ }
+
+
+
+ // metodo che aggiunge il nuovo utente
+
+ addUser(){
+   if(this.newUserForm.valid){
+     this.userService.addUser(this.newUserForm.value as User).subscribe({
+       next: (response: any) =>{
+         this.userService.getUser();
+            console.log(response)
+         this.newUserForm.reset()
+         this.snackBar.openSnackBar('Nuovo utente creato!')
+      },
+      error: (error : any) => this.snackBar.openSnackBar('Errore nella creazione del nuovo utente:')
+      
+    })
+  } else  {
+    this.snackBar.openSnackBar("Inserire campi del form validi:")
+  }
+
+ }
+
+
+
+
+ // metodo che prende il nuovo testo digitato nella search bar e aggiorna i dati
+findUser( ){
+  console.log('findUser chiamato')
+ this.userService.getUser(1, this.testoDigitato)
 }
 
-// metodo che prende il nuovo testo digitato nella search bar e aggiorna i dati
-findUser(newText: string){
- this.userService.searchUser.next(newText)
+// filtra i post in base all'user_id
+findPostByUserId(){
+  if(this.testoDigitato != ''){
+     this.postService.getPostsByUserId(Number(this.testoDigitato))
 
-}
+  } else {
+    this.postService.getPost()
+  }
+} 
 
    
 }

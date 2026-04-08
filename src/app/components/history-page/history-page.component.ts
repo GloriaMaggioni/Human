@@ -6,6 +6,7 @@ import { FirestoreService } from '../../services/firestore-service';
 import { Paginator } from "../paginator/paginator";
 import { CultureItems } from '../../models/culture-items';
 import { NewsService } from '../../services/news.service';
+import { SnackBar } from '../../services/snack-bar';
 
 @Component({
   selector: 'app-history-page',
@@ -20,6 +21,7 @@ export class HistoryPageComponent implements OnInit{
    private cdr = inject(ChangeDetectorRef);
    private historyService = inject(NewsService)
    private historyApiUrl = 'https://www.dati.lombardia.it/resource/4mr7-hfsh.json';  // url del dataset
+   private snackBar = inject(SnackBar)
    @Input() limit : number = 20;           // items per page
    @Input() currentPage : number = 1
    offset :  number = (this.currentPage - 1) * this.limit;       // punto di inizio
@@ -56,7 +58,7 @@ export class HistoryPageComponent implements OnInit{
          this.cdr.detectChanges();
        },
        error : err =>{
-        console.error('Errore nel recupero dati dalla API:', err)
+        this.snackBar.openSnackBar('Errore nel recupero dati dalla API:', err)
        }
     })
    }
