@@ -3,6 +3,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowArbitraryExtensions": true,
      "rootDir": "./src",
     "outDir": "./out-tsc/app",
     "types": [
