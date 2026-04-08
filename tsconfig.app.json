@@ -3,8 +3,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/app",
-    "types": [
+  "allowArbitraryExtensions": true,
+     "rootDir": "./src",
+    "outDir": "./out-tsc/app",    "types": [
       "node"
     ]
   },
