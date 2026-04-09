@@ -4,6 +4,7 @@ import { UsersService } from './users-service';
 import { provideHttpClient } from '@angular/common/http';
 import {provideHttpClientTesting} from '@angular/common/http/testing'
 import { HttpTestingController } from '@angular/common/http/testing';
+import { User } from '../models/users';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -48,4 +49,66 @@ describe('UsersService', () => {
      })
 
   })
+
+  it('should add a user', () => {
+  const mockUser: User = {
+    name: 'Mario User',
+    email: 'mario.user@test.com',
+    gender: 'male',
+    status: 'active'
+  };
+
+  service.addUser(mockUser).subscribe(response => {
+    expect(response).toBeTruthy();
+  });
+
+  const req = controller.expectOne(req => 
+    req.method === 'POST' && req.url === 'https://gorest.co.in/public/v2/users'
+  );
+  req.flush(mockUser);
+});
+
+
+ it('should delete a user', () => {
+   const mockUser : User = {
+    id: 2,
+     name: 'Gloria Maggioni',
+    email: 'gloria@test.com',
+    gender: 'female',
+    status: 'active'
+
+   }
+  
+   service.deleteUser(mockUser.id).subscribe(res =>{
+     expect(res).toBeTruthy()
+   });
+
+   const resp = controller.expectOne('https://gorest.co.in/public/v2/users/2');
+     resp.flush({}) 
+  })
+
+
+
+
+  it('it should return details of users ', () =>{
+  
+    const mockUsers = [
+       {id: 1 , name: 'Gianna', email: 'gianna@test.com', gender: 'female', status: 'inactive'},
+    ];
+
+  
+     service.getUserDetails(mockUsers[0].id).subscribe(response =>{
+      expect(response).toBeTruthy()
+     });
+
+
+   
+     const resp = controller.expectOne('https://gorest.co.in/public/v2/users/1');
+     resp.flush({}) 
+
+  })
+
+
+
+
 });

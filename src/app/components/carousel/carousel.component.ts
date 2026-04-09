@@ -12,7 +12,6 @@ import { NgOptimizedImage, NgStyle } from '@angular/common';
 export class CarouselComponent implements OnInit, OnDestroy {
    
  @Input()  carousel : carousel[] = []
-  //TRASFORM THE CAROUSEL INTO THE DINAMIC CAROUSEL
   currentId : number= 0;
   private intervalId : any;
 
@@ -56,7 +55,6 @@ export class CarouselComponent implements OnInit, OnDestroy {
       this.currentId = this.carousel.length -1;
     }
     this.cdr.detectChanges();
-    console.log('Cambiato a:', this.currentCharacter.name);
   }
 
   ngOnDestroy(): void {

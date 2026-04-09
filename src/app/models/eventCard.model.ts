@@ -48,21 +48,21 @@ export interface EventCard {
       state?: { name?: string; stateCode?: string };
       country?: { countryCode?: string; name?: string };
       images?: { url?: string };
-      location?: { latitudine?: string; longitudine?: string }; // ? vedere se serve
+      location?: { latitudine?: string; longitudine?: string }; 
       postalCode?: string;
       timeZone?: string;
     }>;
     attractions?: Array<{     // artista/performer
       name?: string;
       url?: string;
-      images?: string; // ? vedere se serve
+      images?: string; 
       classifications?: {
         name?: string;
         segment?: { name?: string };      // tipologia evento (es. sport) //SPORT
         subGenre?: { name?: string };    //NBA
         url?: string;
       };
-      externalLinks?: Array<{    // ? vedere se alla fine inserirli o no da qualcke parte
+      externalLinks?: Array<{   
         facebook?: Array<{ url?: string }>;
         homepage?: Array<{ url?: string }>;
         instagram?: Array<{ url?: string }>;

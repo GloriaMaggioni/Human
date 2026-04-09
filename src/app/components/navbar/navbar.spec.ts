@@ -37,7 +37,7 @@ describe('Navbar', () => {
     expect(newButton).toBeTruthy();
 
 
-    //verificare che al click di new-btn succeda qualcosa
+    //verificare che al click di new-btn compaia il form
 
     expect(component.isOpen()).toBeFalse();
      component.createPost()

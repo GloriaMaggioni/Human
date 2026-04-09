@@ -9,8 +9,6 @@ import { DatePipe } from '@angular/common';
 import { filter } from 'rxjs';
 
 
-// TODO: VERIFICARE SE FUNZIONA TUTTO CORRETTAMENTE: SITO NON FUNZIONANTE(è IN AGGIORNAMENTO)
-// ! VALUTARE SE USARE UN ALTRO SITO
 
 @Component({
   selector: 'app-events-page',
@@ -33,7 +31,7 @@ export class EventsPage implements OnInit{
   cards: EventCard[] = [];   // immagazzina i dati per gli events
 
 selectedIndex: number = 0;        // tab scelta categoria 
-filter : string = ''        //  TODO: da verificare se così filter funziona
+filter : string = ''       
 
  el : any = null;
  isOpen = false;
@@ -54,7 +52,6 @@ filter : string = ''        //  TODO: da verificare se così filter funziona
     { label: 'Multimedia', filter: '?classificationName=Film' }
   ];
 
-  // TODO: VERIFICARE SE FUNZIONA CORRETTAMENTE
   buttonSelected(index: number) {    // indica quale tab è stato selezionato
     this.selectedIndex = index;
       this.filter = this.tabs?.[index].filter
@@ -72,7 +69,7 @@ filter : string = ''        //  TODO: da verificare se così filter funziona
       {
         next: data =>{
           this.cards = data._embedded?.events || [];
-          this.totalEvents = this.cards.length;   // TODO: DA VERIFICARE
+          this.totalEvents = this.cards.length;   
            this.cdr.detectChanges();
           console.log('Primo evento', this.cards)
         },
@@ -110,30 +107,3 @@ filter : string = ''        //  TODO: da verificare se così filter funziona
 
 
 
-
-/*
- API PER LA RACCOLTA DEGLI EVENTI
- 
-1.dati Regione lombardia
-2. TicketMater API ---> key API : 6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n   baseUrl: https://app.ticketmaster.com/discovery/v2/events.json? , paramsQuery: apikey=TUA_CHIAVE&countryCode=IT&city=Milano&classificationName=arte
-
-
- https://app.ticketmaster.com/discovery/v2/events.json?apiKey=6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n&countryCode:IT&city=Milano&classificationName=Art
- https://app.ticketmaster.com/discovery/v2/events.json?apikey=6p0QSvZIxwHJjEGXdbtGTlu1zMpv2K9n&countryCode=IT&region=Liguria  // funziona cambiado city con region
- eventi libri= usare classificationName= lecture
-*/
-
-/*
-  PARAMETRI DI FILTRO RICERCA:
-  keyword?: string,
-  source?: string,
-  startDateTime?: string,           // ISO 8601  2024-01-01T00:00:00Z   (anno-mese-giorno)
-  endDateTime?: string,            // ISO 8601  2024-01-01T00:00:00Z     (anno-mese-giorno)
-  size?: string,
-  page?:  number | string,
-  city?: string,
-  countryCode?: string,            // ISO 2166-1 (IT, GB, US)
-  stateCode?: string,              //CA, NY
-  classificationName?: string,
-  segmentName?: string,           
-*/

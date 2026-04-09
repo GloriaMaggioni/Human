@@ -14,6 +14,19 @@ describe('CarouselComponent', () => {
 
     fixture = TestBed.createComponent(CarouselComponent);
     component = fixture.componentInstance;
+    component.carousel = [
+      {
+        img : 'ciao bello',
+        cit : 'Bisogna vivere al massimo delle proprie possibilità',
+        name: 'Gloria Maggioni',
+        bornDate: 1996,
+        deathDate: 3000,
+        profession: 'Developer',
+        background: 'blue',
+        city: 'Milan'
+
+      }
+    ]
     fixture.detectChanges();
   });
 

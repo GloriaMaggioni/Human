@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HistoryPageComponent } from './history-page.component';
+import { FirestoreService } from '../../services/firestore-service';
+
+const firestoreServiceStub = {
+  getCharacters: () => Promise.resolve([])
+}
 
 describe('HistoryPageComponent', () => {
   let component: HistoryPageComponent;
@@ -8,7 +13,10 @@ describe('HistoryPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HistoryPageComponent]
+      imports: [HistoryPageComponent],
+      providers: [
+        { provide: FirestoreService ,useValue: firestoreServiceStub}
+      ]
     })
     .compileComponents();
 

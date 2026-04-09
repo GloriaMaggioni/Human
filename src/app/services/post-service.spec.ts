@@ -45,4 +45,71 @@ describe('PostService', () => {
       expect(posts).toEqual(mockPost)
     })
   })
+
+
+
+  it('should create a post', () =>{
+    const mockPost = {
+        id: 5, 
+        user_id: 23, 
+        title: 'post di testing 5', 
+        body: 'descrizione del post 5 usato per il testing', comment:[],
+    };
+
+    service.createPost(mockPost, 1).subscribe( res =>{
+      expect(res).toBeTruthy();
+    })
+
+    const req = controller.expectOne(req => 
+    req.method === 'POST' && req.url === 'https://gorest.co.in/public/v2/users/1/posts'
+  );
+  req.flush(mockPost);
+  })
+
+
+
+
+ it('should delete a post', () => {
+   const mockUser  = {
+        id: 8, 
+        user_id: 54, 
+        title: 'post di testing 33', 
+        body: 'descrizione del post 33 usato per il testing', comment:[],
+
+   }
+  
+   service.deletePost(mockUser.id).subscribe(res =>{
+     expect(res).toBeTruthy()
+   });
+
+   const resp = controller.expectOne('https://gorest.co.in/public/v2/posts/8');
+     resp.flush({}) 
+  })
+
+
+
+  it('it should return details of the posts ', () =>{
+  
+    const mockPost = [
+       {  id: 8, 
+        user_id: 54, 
+        title: 'post di testing 33', 
+        body: 'descrizione del post 33 usato per il testing', comment:[]},
+    ];
+
+  
+     service.getPostsByUserId(54)
+   
+
+
+   
+     const resp = controller.expectOne('https://gorest.co.in/public/v2/users/54/posts');
+     resp.flush(mockPost);
+     
+     service.post$.subscribe(posts =>{
+      expect(posts).toEqual(mockPost)
+     })
+
+  })
+
 });
