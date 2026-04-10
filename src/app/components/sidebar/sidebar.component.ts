@@ -32,32 +32,32 @@ export class SidebarComponent {
  items = [
     {
       link: ' ',
-      icon: '/assets/images/home-icon2.svg',
+      icon: 'assets/images/home-icon2.svg',
       label: 'Home'
     },
      {
       link: 'events',
-      icon: '/assets/images/event-icon2.svg',
+      icon: 'assets/images/event-icon2.svg',
       label: 'Events'
     },
      {
       link: 'history',
-      icon: '/assets/images/history-icon2.svg',
+      icon: 'assets/images/history-icon2.svg',
       label: 'History'
     },
      {
       link: 'future',
-      icon: '/assets/images/future-icon2.svg',
+      icon: 'assets/images/future-icon2.svg',
       label: 'Future'
     },
      {
       link: 'spaziCulturali',
-      icon: '/assets/images/p&s-icon2.svg',
+      icon: 'assets/images/p&s-icon2.svg',
       label: 'Spazi Culturali'
     },
      {
       link: 'utents',
-      icon: '/assets/images/utents-icon2.svg',
+      icon: 'assets/images/utents-icon2.svg',
       label: 'Utents'
     },
    
@@ -67,14 +67,14 @@ export class SidebarComponent {
   setting = [ 
   {
      link: 'settings',
-      icon: '/assets/images/setting-icon2.svg',
+      icon: 'assets/images/setting-icon2.svg',
       label: 'Setting'
     }
   ];
   logout = [
     {
       link: '/login',
-      icon: '/assets/images/logout-icon2.svg',
+      icon: 'assets/images/logout-icon2.svg',
       label: 'Logout'
     }
   ]
