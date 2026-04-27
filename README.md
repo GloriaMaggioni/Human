@@ -3,6 +3,8 @@
 
 A dynamic Angular dashboard application, integrating multiple REST APIs and real-time data sources for user and content management.
 The purpose of this projects is encourage people to learn something new, meet new people and to have joy and curiosity for the unknown ,especially for the culture
+
+Link to the project: https://gloriamaggioni.github.io/Humanitas/login
 <img width="3200" height="1664" alt="login" src="https://github.com/user-attachments/assets/13439143-f188-4939-8433-f97495268fa9" />
 
 
